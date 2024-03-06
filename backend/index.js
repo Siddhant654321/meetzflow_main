@@ -1,6 +1,17 @@
 import express from 'express';
 import 'dotenv/config';
 const app = express();
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+
+const corsOptions = {
+    origin: 'https://meetzflow.com', 
+    credentials: true
+};
+app.options('*', cors(corsOptions));
+app.use(cors(corsOptions))
+app.use(cookieParser())
+app.use(express.json())
 
 app.get('/', (req, res) => {
     res.send('Welcome to MeetzFlow')

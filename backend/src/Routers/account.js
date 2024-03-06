@@ -79,4 +79,34 @@ Router.get('/endpoint/verifyEmail/:code/:email', async (req, res) => {
     }
 });
 
+Router.post('/endpoint/account/newVerificationCode', async (req,res) => {
+    try {
+        const code = Math.floor(10000000 + Math.random() * 90000000).toString(); 
+        const verificationCode = await bcrypt.hash(code, 8);
+        let user = await accountModel.findOne({ email: req.body.email });
+        if (!user) {
+            return res.status(404).send({ error: 'User Not Found With This Email'});
+        }
+        if(user.status === 'active'){
+            return res.status(400).send('Email is already verified')
+        }
+        user.verificationCode = verificationCode;
+        user.status = 'pending'
+        user.verificationCodeExpires = Date.now() + 24*60*60*1000
+        sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+        const msg = {
+            to: user.email,
+            from: 'admin@meetzflow.com',
+            subject: 'Verify Your Email - MeetzFlow',
+            text: `Please verify your email address to get access to features like team collaboration and meeting scheduling - https://meetzflow.com/verify/${code}/${user.email}`,
+            html: verificationEmail(code, user.email, user.name)
+        };
+        sgMail.send(msg);
+        await accountModel(user).save();
+        res.status(201).send({success: 'Email Sent Successfully'})
+    } catch (error) {
+        res.status(500).send('Server Error')
+    }
+})
+
 export default Router;

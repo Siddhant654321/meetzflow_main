@@ -38,4 +38,45 @@ Router.post('/account/endpoint/newSignUp', async (req, res) => {
     }
 })
 
+Router.get('/endpoint/verifyEmail/:code/:email', async (req, res) => {
+    try {
+        const { code, email } = req.params;
+        let user = await accountModel.findOne({ email });
+
+        if(!user) {
+            return res.status(400).send({error: 'User not found'});
+        }
+
+        if(user.status === 'active'){
+            return res.status(400).send({error: 'Your Account is already verified'})
+        }
+
+        if(!user.verificationCode){
+            return res.status(200).send({expired: 'Verification code expired'})
+        }
+        const isMatch = await bcrypt.compare(code, user.verificationCode);
+
+        if(isMatch) {
+            if(Date.now() <= user.verificationCodeExpires){
+                user.status = 'active';
+                user.verificationCode = undefined;
+                user.verificationCodeExpires = undefined;
+                await user.save();
+                return res.send({success: 'Email verified successfully'});
+            }
+            else{
+                user.status = 'deletedCode';
+                user.verificationCode = undefined;
+                user.verificationCodeExpires = undefined;
+                await user.save();
+                return res.status(200).send({expired: 'Verification code expired'});
+            }
+        } else {
+            return res.status(400).send({error: 'Invalid verification code'});
+        }
+    } catch (error) {
+        res.status(500).send({error: 'Server Error'})
+    }
+});
+
 export default Router;

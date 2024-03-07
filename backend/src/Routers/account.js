@@ -11,6 +11,8 @@ import * as fs from 'fs';
 import path from 'path';
 import multer from 'multer';
 import auth from '../middleware/auth.js';
+import sharp from 'sharp';
+import crypto from 'crypto';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 

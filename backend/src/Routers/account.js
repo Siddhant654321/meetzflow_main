@@ -385,4 +385,17 @@ Router.get('/account/endpoint/notifications', auth, async (req, res) => {
     }
 })
 
+Router.get('/account/endpoint/:email', async (req, res) => {
+    try {
+        const user = await accountModel.findOne({email: req.params.email.toLowerCase()})
+        if(user === null){
+            return res.status(404).send('No User with this email Exist')
+        }
+        const {name, email, organization = null, role = null, avatar = null} = user
+        res.send({name, email, organization, role, avatar})
+    } catch (error) {
+        res.status(500).send({error: 'Server Error'})
+    }
+})
+
 export default Router;

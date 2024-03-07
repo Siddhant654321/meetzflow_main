@@ -311,4 +311,30 @@ Router.patch('/account/endpoint/update', auth, upload.single('avatar'), async (r
   }
 );
 
+Router.delete('/account/endpoint/delete', auth, async (req, res) => {
+    try {
+        const {email} = await accountModel.findByIdAndDelete(req.userId);
+        await scheduleModel.deleteMany({userId: req.userId})
+        await meetingModel.deleteMany({email})
+        const avatarDir = path.join(__dirname, `../../avatars/${email}`)
+        if (fs.existsSync(avatarDir)) {
+            if (fs.statSync(avatarDir).isDirectory()) {
+              fs.readdirSync(avatarDir).forEach(function(file) {
+                const curPath = avatarDir + '/' + file;
+                if (fs.lstatSync(curPath).isDirectory()) {
+                  deleteFolderIfExists(curPath);
+                } else {
+                  fs.unlinkSync(curPath);
+                }
+              });
+              fs.rmdirSync(avatarDir);
+            } 
+          } 
+        res.clearCookie('token');
+        res.status(200).send({result: 'Account Deleted Successfully'})
+    } catch (error) {
+        res.status(500).send({result: 'Account Deletion Failed'})
+    }
+})
+
 export default Router;

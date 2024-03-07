@@ -7,6 +7,11 @@ import sgMail from '@sendgrid/mail';
 import verificationEmail from '../EmailTemplate/verificationEmail.js';
 import multer from 'multer';
 import auth from '../middleware/auth.js';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const Router = express.Router();
 

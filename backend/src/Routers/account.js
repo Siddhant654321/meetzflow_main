@@ -398,4 +398,12 @@ Router.get('/account/endpoint/:email', async (req, res) => {
     }
 })
 
+Router.get('/avatars/:email/:image', (req, res) => {
+    try {
+        res.sendFile(path.join(__dirname, `../../avatars/${req.params.email}/${req.params.image}`))
+    } catch (error) {
+        res.status(404).send('Image Not Found')
+    }
+})
+
 export default Router;

@@ -353,4 +353,15 @@ Router.get('/account/endpoint/logout', auth, async (req, res) => {
     }
 })
 
+Router.get('/account/endpoint/logout-everyone', auth, async (req, res) => {
+    try {
+        req.user.tokens = [];
+        await req.user.save()
+        res.clearCookie('token');
+        res.status(200).send({result: 'All devices are logged out from this account'})
+    } catch (error) {
+        res.status(500).send({result: 'Server Error'})
+    }
+})
+
 export default Router;

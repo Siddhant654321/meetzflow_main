@@ -364,4 +364,25 @@ Router.get('/account/endpoint/logout-everyone', auth, async (req, res) => {
     }
 })
 
+Router.get('/account/endpoint/notifications', auth, async (req, res) => {
+    
+    const page = Number(req.query.page) || 1;
+    const limit = Number(req.query.limit) || 5;
+    const skip = (page - 1) * limit;
+
+    try {
+
+        if (req.user.notifications.length === 0) {
+            return res.status(200).send({ noNotification: "You have no new notifications" });
+        }
+
+        const sortedNotifications = req.user.notifications.sort((a, b) => b.time - a.time);
+        const paginatedNotifications = sortedNotifications.slice(skip, skip + limit);
+
+        return res.status(200).send({notifications: paginatedNotifications});
+    } catch (error) {
+        res.status(500).send({error})
+    }
+})
+
 export default Router;

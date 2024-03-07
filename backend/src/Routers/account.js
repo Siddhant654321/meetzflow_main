@@ -5,6 +5,7 @@ import mongoose from '../../mongoose.js';
 import bcrypt from 'bcrypt';
 import sgMail from '@sendgrid/mail';
 import verificationEmail from '../EmailTemplate/verificationEmail.js';
+import multer from 'multer';
 
 const Router = express.Router();
 
@@ -208,5 +209,17 @@ Router.post('/account/endpoint/login', async (req, res) => {
         res.status(400).send({error: 'Either email or password is wrong'})
     }
 });
+
+const storage = multer.diskStorage({
+    destination: `./avatars/`,
+    filename: function (req, file, cb) {
+        crypto.pseudoRandomBytes(16, function (err, raw) {
+          if (err) return cb(err);
+          cb(null, raw.toString('hex') + path.extname(file.originalname));
+        });
+    }
+});
+
+const upload = multer({storage: storage});
 
 export default Router;

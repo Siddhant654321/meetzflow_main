@@ -337,4 +337,20 @@ Router.delete('/account/endpoint/delete', auth, async (req, res) => {
     }
 })
 
+Router.get('/account/endpoint/logout', auth, async (req, res) => {
+    try{
+        const token = req.cookies.token;
+        req.user.tokens.forEach((value, index) => {
+            if(value.token == token){
+                req.user.tokens.splice(index, 1);
+            }
+        })
+        await req.user.save();
+        res.clearCookie('token');
+        res.status(200).send({result: 'Account logged out successfully'})
+    } catch (error) {
+        res.status(500).send({result: 'Unable to logout'})
+    }
+})
+
 export default Router;

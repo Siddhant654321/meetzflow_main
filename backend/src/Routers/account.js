@@ -135,4 +135,52 @@ Router.post('/endpoint/account/forgot-password', async (req,res) => {
     }
 });
 
+Router.patch('/endpoint/change-password/:code/:email', async (req, res) => {
+    try {
+        const { code, email } = req.params;
+        let user = await accountModel.findOne({ email });
+
+        if(!user) {
+            return res.status(400).send({error: 'User not found'});
+        }
+
+        if(!user.forgotPasswordCode){
+            return res.status(400).send({expired: 'Verification code expired. Please request a new one by heading to Login page and clicking on Forgot Password Link.'})
+        }
+
+        const isMatch = await bcrypt.compare(code, user.forgotPasswordCode);
+
+        if(isMatch) {
+            if(Date.now() <= user.forgotPasswordCodeExpires){
+                const password = await bcrypt.hash(req.body.password, 8);
+                const token = getToken(user._id)
+                user.tokens.push({token})
+                user.password = password;
+                user.forgotPasswordCode = undefined;
+                user.forgotPasswordCodeExpires = undefined;
+                await user.save();
+                await saveNotifications('You have changed your password', 'profile', req.userId);
+                const expirationDate = new Date();
+                expirationDate.setDate(expirationDate.getDate() + 30);
+                res.cookie('token', token, {
+                    httpOnly: true,
+                    expires: expirationDate,
+                    sameSite: 'Lax'
+                })
+                return res.send({success: 'Password Changed successfully', name: user.name, email: user.email});
+            }
+            else{
+                user.forgotPasswordCode = undefined;
+                user.forgotPasswordCodeExpires = undefined;
+                await user.save();
+                return res.status(400).send({error: 'Password reset link has expired'});
+            }
+        } else {
+            return res.status(400).send({error: 'Invalid verification code'});
+        }
+    } catch (error) {
+        res.status(500).send({error: 'Server Error'})
+    }
+});
+
 export default Router;

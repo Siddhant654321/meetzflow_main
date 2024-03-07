@@ -243,4 +243,4 @@ const forgotPassword = (code, email) => {
     `)
 }
 
-module.exports = forgotPassword
+export default forgotPassword

@@ -6,6 +6,7 @@ import bcrypt from 'bcrypt';
 import sgMail from '@sendgrid/mail';
 import verificationEmail from '../EmailTemplate/verificationEmail.js';
 import multer from 'multer';
+import auth from '../middleware/auth.js';
 
 const Router = express.Router();
 
@@ -221,5 +222,93 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({storage: storage});
+
+Router.patch('/account/endpoint/update', auth, upload.single('avatar'), async (req, res) => {
+    try {
+      const updates = Object.keys(req.body);
+      const allowedUpdates = ['name','role', 'password', 'avatar', 'organization'];
+
+      if (updates.includes('email')) {
+        return res.status(400).send({ error: 'Email cannot be changed.'});
+      }
+
+      if (updates.includes('password')) {
+        req.body.password = await bcrypt.hash(req.body.password, 8);
+      }
+
+      const isValidOperation = updates.every((update) =>
+        allowedUpdates.includes(update)
+      );
+
+      if (!isValidOperation) {
+        return res.status(400).send({ error: 'Invalid updates!' });
+      }
+
+      updates.forEach((update) => (req.user[update] = req.body[update]));
+      
+      if (req.file) {
+          
+          const inputPath = req.file.path;
+          if (!fs.existsSync(`./avatars/${req.user.email}`)) {
+              fs.mkdirSync(`./avatars/${req.user.email}`);
+          }
+          const outputPath = `./avatars/${req.user.email}/compressed_${req.file.filename}`;
+          try {
+          await sharp(inputPath)
+              .resize(250, null, { 
+                  withoutEnlargement: true,  
+                  fit: 'inside'  
+              })
+              .jpeg()
+              .toFile(outputPath);
+      
+          fs.unlinkSync(inputPath);
+          req.user.avatar = `compressed_${req.file.filename}`;
+          
+          
+          } catch (error) {
+              res.status(500).send({error: "Server error"})
+          }
+      }
+
+      await req.user.save();
+      if (updates.includes('password')){
+          await saveNotifications('You have changed your password', 'profile', req.userId);
+      } else {
+          await saveNotifications('You have changed your account details', 'profile', req.userId);
+      }
+
+      if(req.file){
+          fs.readdir(`./avatars/${req.user.email}`, (err, files) => {
+              if (err) {
+                  return res.status(500).send({error: 'Server Error'})
+              }
+          
+              files.forEach((file) => {
+                  
+              if (file !== `compressed_${req.file.filename}`) {
+                  const filePath = path.join(`./avatars/${req.user.email}`, file);
+          
+                  try {
+                      fs.unlinkSync(filePath);
+                  } catch (err) {
+                      return res.status(500).send({error: 'Server Error'})
+                  }
+
+              }
+              });
+          });
+      }
+
+      res.send({success: "Detail updated Successfull"});
+      
+    } catch (error) {
+      res.status(500).send({error: 'Server Error'});
+    }
+  },
+  (error, req, res, next) => {
+    res.status(400).send({ error: error.message });
+  }
+);
 
 export default Router;

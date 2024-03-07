@@ -109,4 +109,30 @@ Router.post('/endpoint/account/newVerificationCode', async (req,res) => {
     }
 })
 
+Router.post('/endpoint/account/forgot-password', async (req,res) => {
+    try{
+        const user = await accountModel.findOne({ email: req.body.email })
+        if(!user){
+            return res.status(400).send({error: 'Account with this email not Found'})
+        }
+        const code = Math.floor(10000000 + Math.random() * 90000000).toString(); 
+        const forgotPasswordCode = await bcrypt.hash(code, 8);
+        user.forgotPasswordCode = forgotPasswordCode;
+        user.forgotPasswordCodeExpires = Date.now() + 24*60*60*1000
+        sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+        const msg = {
+            to: user.email,
+            from: 'admin@meetzflow.com',
+            subject: 'Change Your Password - MeetzFlow',
+            text: `Please follow this link to set a new password - https://meetzflow.com/change-password/${code}/${user.email}`,
+            html: forgotPassword(code, user.email)
+        };
+        sgMail.send(msg);
+        await accountModel(user).save();
+        res.status(201).send({success: 'Email Sent Successfully'})
+    } catch (error) {
+        res.status(500).send({error: 'Server Error Occured'})
+    }
+});
+
 export default Router;

@@ -183,4 +183,30 @@ Router.patch('/endpoint/change-password/:code/:email', async (req, res) => {
     }
 });
 
+Router.post('/account/endpoint/login', async (req, res) => {
+    try {
+        const user = await accountModel.findOne({email: req.body.email})
+        if(await bcrypt.compare(req.body.password, user.password)){
+            const {status} = user;
+            if(status !== 'active'){
+                return res.status(400).send({emailError: 'Your email is not verified. Please verify it before performing any action'})
+            }
+            const token = getToken(user._id)
+            user.tokens.push({token})
+            const expirationDate = new Date();
+            expirationDate.setDate(expirationDate.getDate() + 30);
+            res.cookie('token', token, {
+                httpOnly: true,
+                expires: expirationDate,
+                sameSite: 'Lax'
+            })
+            await user.save()
+            return res.status(201).send({name: user.name, email: user.email, isGoogleConnected: user.googleAuthorizationCode ? true : false})
+        }
+        throw new Error()
+    } catch (error) {
+        res.status(400).send({error: 'Either email or password is wrong'})
+    }
+});
+
 export default Router;

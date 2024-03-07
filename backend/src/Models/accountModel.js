@@ -2,6 +2,15 @@ import mongoose from '../../mongoose.js';
 import validator from "email-validator";
 
 
+const googleAuthorizationCode = new mongoose.Schema({
+    access_token: String,
+    refresh_token: String,
+    scope: String,
+    token_type: String,
+    expiry_date: Number,
+});
+
+
 const accountSchema = new mongoose.Schema({
     _id: {
         type: mongoose.Schema.Types.ObjectId,
@@ -62,6 +71,12 @@ const accountSchema = new mongoose.Schema({
             type: Date
         }
     }],
+    googleAuthorizationCode,
+    tokens: [{
+        token: {
+            type: String
+        }
+    }]
 })
 
 const accountModel = mongoose.model('Accounts', accountSchema)

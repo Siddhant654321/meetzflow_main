@@ -3,6 +3,7 @@ import auth from '../middleware/auth.js';
 import scheduleModel from '../Models/scheduleModel.js';
 import accountModel from '../Models/accountModel.js';
 import meetingModel from '../Models/meetingModal.js';
+import saveNotifications from '../saveNotifications.js';
 
 const Router = new express.Router();
 
@@ -53,6 +54,37 @@ Router.post('/schedule/endpoint/new', auth, async (req, res) => {
         }
         await scheduleModel({...req.body, schedulerName: req.body.schedulerName.toLowerCase(), userId: req.userId}).save();
         return res.status(201).send('Scheduler Created Successfully!')
+    } catch(error){
+        res.status(500).send({error: 'Server Error'})
+    }
+})
+
+Router.patch('/schedule/endpoint/:name', auth, async (req, res) => {
+    try{
+        if(req.body.schedulerName.includes(" ")){
+            return res.status(400).send({spaceDetected: 'Scheduler Name cannot contain spaces'})
+        }
+        if(req.body.hasOwnProperty('schedulerName')){
+            const isAlready = await scheduleModel.findOne({schedulerName: req.body.schedulerName});
+            if(isAlready){
+                return res.status(400).send({alreadyExists: 'Scheduler with this name already exists'})
+            }
+        }
+        const scheduler = await scheduleModel.findOne({userId: req.userId, schedulerName: req.params.name});
+        if(!scheduler){
+            return res.status(404).send({noScheduler: 'Scheduler with this name is not found'})
+        }
+        const updates = Object.keys(req.body);
+        const allowedUpdates = ['schedulerName','meetingTitle', 'meetingDescription', 'daysInAdvance', 'daysArray'];
+        const isValidOperation = updates.every((update) =>
+          allowedUpdates.includes(update)
+        );
+        if (!isValidOperation) {
+          return res.status(400).send({ error: 'Invalid updates!' });
+        }
+        updates.forEach((update) => (scheduler[update] = req.body[update]));
+        await scheduler.save();
+        await saveNotifications(`You have updated your scheduler ${scheduler.schedulerName}`, 'scheduler', req.userId);
     } catch(error){
         res.status(500).send({error: 'Server Error'})
     }

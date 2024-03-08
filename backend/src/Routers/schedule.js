@@ -39,4 +39,23 @@ Router.get('/schedule/endpoint/:name', async (req, res) => {
     }
 })
 
+Router.post('/schedule/endpoint/new', auth, async (req, res) => {
+    try{
+        if(req.body.schedulerName.includes(" ")){
+            return res.status(400).send({spaceDetected: 'Scheduler Name cannot contain spaces'})
+        }
+        const scheduler = await scheduleModel.findOne({schedulerName: req.body.schedulerName})
+        if(scheduler){
+            return res.status(400).send({alreadyExists: 'Scheduler with this name already exists'})
+        }
+        if(req.body.daysArray.length === 0){
+            return res.status(400).send({emptyDaysArray: 'You must provide at least one day in daysArray'})
+        }
+        await scheduleModel({...req.body, schedulerName: req.body.schedulerName.toLowerCase(), userId: req.userId}).save();
+        return res.status(201).send('Scheduler Created Successfully!')
+    } catch(error){
+        res.status(500).send({error: 'Server Error'})
+    }
+})
+
 export default Router;

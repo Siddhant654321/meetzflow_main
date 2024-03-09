@@ -23,4 +23,20 @@ Router.get('/auth/google', auth, (req, res) => {
     res.redirect(url);
 });
 
+Router.get('/api/setup/callback', auth, async (req, res) => {
+    const { code } = req.query;
+    const { tokens } = await oauth2Client.getToken(code);
+    oauth2Client.setCredentials(tokens);
+    try {
+        if(req.user.googleAuthorizationCode){
+            return res.status(400).send('Your Google Calendar Account is already connected')
+        }
+        req.user.googleAuthorizationCode = {...tokens}
+        await req.user.save();
+        res.redirect(process.env.NODE_ENV === 'production' ? 'http://meetzflow.com/app/setup/?success=success' : 'http://localhost:3001/app/setup/?success=success');
+    } catch(error) {
+        res.status(500).send('Authentication failed');
+    }
+});
+
 export const AuthRouter = Router;

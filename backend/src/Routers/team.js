@@ -27,3 +27,25 @@ Router.get('/team/endpoint/allTeams', auth, async (req, res) => {
         return res.status(500).send({error: 'Server Error'})
     }
 })
+
+Router.get('/team/endpoint/oneTeam/:teamName', auth, async (req, res) => {
+    try {
+        const teamName = decodeURIComponent(req.params.teamName)
+        const team = await teamModel.findOne({
+            team: teamName,
+            $or: [
+                { "admin.email": req.user.email },
+                { "members.email": req.user.email }
+            ]
+        })
+        if(!team){
+            return res.status(404).send({noTeams: 'Team Not Found'})
+        }
+
+        return res.status(200).send(team)
+    } catch (error) {
+        return res.status(500).send({error: 'Server Error'})
+    }
+})
+
+export default Router

@@ -90,4 +90,16 @@ Router.patch('/schedule/endpoint/:name', auth, async (req, res) => {
     }
 })
 
+Router.delete('/schedule/endpoint/:name', auth, async (req, res) => {
+    try{
+        const scheduler = await scheduleModel.findOneAndDelete({userId: req.userId, schedulerName: req.params.name});
+        if(!scheduler){
+            return res.status(404).send({noScheduler: 'Scheduler with this name is not found'})
+        }
+        res.status(200).send(`Scheduler ${req.params.name} is deleted successfully`)
+    } catch (error){
+        return res.status(500).send({error: 'Server Error'})
+    }
+})
+
 export default Router;

@@ -39,4 +39,17 @@ Router.get('/api/setup/callback', auth, async (req, res) => {
     }
 });
 
+Router.get('/api/user/is-google-auth', auth, async (req, res) => {
+
+    try{
+      if(!req.user.googleAuthorizationCode){ 
+          return res.status(400).send('Your Google Calendar Account is not connected')
+      } else { 
+          res.send('Your Google Calendar Account is already connected')
+      }
+    } catch(error){
+      res.status(500).send('Server Error')
+    }
+})
+
 export const AuthRouter = Router;

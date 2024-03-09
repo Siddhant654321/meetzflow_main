@@ -132,4 +132,16 @@ Router.get('/meetings/endpoint/all', auth, async (req, res) => {
     }
 })
 
+Router.get('/meetings/endpoint/:name', auth, async (req, res) => {
+    try {
+        const meetings = await meetingModel.find({email: req.user.email, scheduler: req.params.name}).sort({time: 1})
+        if(!meetings.length){
+            return res.status(404).send({noMeetingError: 'This scheduler does not have any meetings'})
+        }
+        return res.status(200).send(meetings)
+    } catch (error) {
+        return res.status(400).send({error})
+    }
+})
+
 export default Router;

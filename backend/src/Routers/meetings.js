@@ -120,4 +120,16 @@ Router.post('/meetings/endpoint/team/new', auth, getChat, async (req, res) => {
     }
 })
 
+Router.get('/meetings/endpoint/all', auth, async (req, res) => {
+    try {
+        const meetings = await meetingModel.find({email: req.user.email}).sort({time: 1})
+        if(!meetings.length){
+            return res.status(200).send({noMeeting: 'You do not have any meeting yet'})
+        }
+        res.status(200).send({meetings})
+    } catch (error) {
+        res.status(500).send({error})
+    }
+})
+
 export default Router;

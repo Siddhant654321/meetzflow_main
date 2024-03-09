@@ -5,6 +5,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import AccountRouter from './src/Routers/account.js';
 import ScheduleRouter from './src/Routers/schedule.js';
+import MeetingsRouter from './src/Routers/meetings.js';
 
 const corsOptions = {
     origin: 'https://meetzflow.com', 
@@ -17,6 +18,7 @@ app.use(express.json())
 
 app.use(AccountRouter)
 app.use(ScheduleRouter)
+app.use(MeetingsRouter)
 
 app.get('/', (req, res) => {
     res.send('Welcome to MeetzFlow')

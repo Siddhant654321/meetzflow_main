@@ -16,7 +16,7 @@ import crypto from 'crypto';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import scheduleModel from '../Models/scheduleModel.js';
-import meetingModel from '../Models/meetingModal.js';
+import meetingModel from '../Models/meetingModel.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);

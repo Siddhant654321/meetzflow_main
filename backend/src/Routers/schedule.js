@@ -2,7 +2,7 @@ import express from 'express';
 import auth from '../middleware/auth.js';
 import scheduleModel from '../Models/scheduleModel.js';
 import accountModel from '../Models/accountModel.js';
-import meetingModel from '../Models/meetingModal.js';
+import meetingModel from '../Models/meetingModel.js';
 import saveNotifications from '../saveNotifications.js';
 
 const Router = new express.Router();

@@ -9,6 +9,8 @@ import saveNotifications from '../saveNotifications.js';
 import getOAuthClient from '../getOAuthClient.js';
 import auth from '../middleware/auth.js';
 import getChat from '../middleware/getChat.js';
+import chatModel from '../Models/chatModel.js';
+import { v4 as uuidv4 } from 'uuid';
 
 const Router = new express.Router();
 
@@ -141,6 +143,24 @@ Router.get('/meetings/endpoint/:name', auth, async (req, res) => {
         return res.status(200).send(meetings)
     } catch (error) {
         return res.status(400).send({error})
+    }
+})
+
+Router.get('/meetings/endpoint/id/:id', auth, async (req, res) => {
+    try {
+        if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+            return res.status(404).send({error: 'Meeting not found!'});
+        }
+        const meeting = await meetingModel.findById(req.params.id);
+        if(!meeting){
+            return res.status(404).send({error: 'Meeting not found!'})
+        }
+        if(meeting.email !== req.user.email) {
+            return res.status(401).send({error: 'You are not Authenticated to view the details of this meeting'})
+        }
+        return res.status(200).send(meeting);
+    } catch(error) {
+        return res.status(500).send({serverError: 'Server Error'})
     }
 })
 

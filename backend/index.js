@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser';
 import AccountRouter from './src/Routers/account.js';
 import ScheduleRouter from './src/Routers/schedule.js';
 import MeetingsRouter from './src/Routers/meetings.js';
+import emailModify from './src/middleware/emailModify.js';
 
 const corsOptions = {
     origin: 'https://meetzflow.com', 
@@ -15,6 +16,7 @@ app.options('*', cors(corsOptions));
 app.use(cors(corsOptions))
 app.use(cookieParser())
 app.use(express.json())
+app.use(emailModify)
 
 app.use(AccountRouter)
 app.use(ScheduleRouter)

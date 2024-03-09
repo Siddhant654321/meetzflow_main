@@ -1,4 +1,4 @@
-import accountModel from './Models/accountModel';
+import accountModel from './Models/accountModel.js';
 import moment from 'moment-timezone';
 
 const saveMultipleNotifications = async (notification, criteria, emails) => {

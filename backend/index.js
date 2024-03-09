@@ -7,6 +7,7 @@ import AccountRouter from './src/Routers/account.js';
 import ScheduleRouter from './src/Routers/schedule.js';
 import MeetingsRouter from './src/Routers/meetings.js';
 import contactRouter from './src/Routers/contact.js';
+import {AuthRouter} from './src/Routers/google-auth.js';
 import emailModify from './src/middleware/emailModify.js';
 
 const corsOptions = {
@@ -23,6 +24,7 @@ app.use(AccountRouter)
 app.use(ScheduleRouter)
 app.use(MeetingsRouter)
 app.use(contactRouter)
+app.use(AuthRouter)
 
 app.get('/', (req, res) => {
     res.send('Welcome to MeetzFlow')

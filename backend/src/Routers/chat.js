@@ -74,4 +74,21 @@ async function compressImage(req, res, next) {
     next();
 }
 
+Router.post('/chat/endpoint/newImage', auth, upload.array('files[]', 10), getChat, compressImage, async (req, res) => {
+    try{
+        const images = req.files.map((file, index) => ({
+            time: req.body.time[index],
+            sentByName: req.account.name,
+            sentByEmail: req.account.email,
+            imageMessage: `compressed_${file.filename}`
+        }));
+        req.chat.chat.push(...images);
+        await chatModel.findByIdAndUpdate(req.chat._id, { chat: req.chat.chat });
+    
+        res.status(201).send('Images Saved Successfully!');
+    } catch (error) {
+        res.status(500).send({error: 'Server Error'})
+    }
+});
+
 export default Router;

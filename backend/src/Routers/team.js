@@ -4,6 +4,7 @@ import teamModel from '../Models/teamModel.js'
 import chatModel from '../Models/chatModel.js';
 import accountModel from '../Models/accountModel.js';
 import saveNotifications from '../saveNotifications.js';
+import saveMultipleNotifications from '../saveMultipleNotifications.js';
 
 const Router = new express.Router();
 
@@ -170,5 +171,22 @@ Router.get('/team/endpoint/getMembers/:team', auth, async (req, res) => {
         return res.status(500).send({error: 'Server Error'})
     }
 });
+
+Router.delete('/team/endpoint/deleteTeam', auth, async (req, res) => {
+    try {
+        const {email, name} = req.user
+        const team = await teamModel.findOneAndDelete({team: req.body.team, 'admin.email': email})
+        if(team === null){
+            return res.status(404).send('This Team does not exist')
+        }
+        await chatModel.findOneAndDelete({teamId: String(team._id)})
+        const members = [...team.admin, ...team.members]
+        const memberEmails = members.map(member => member.email)
+        await saveMultipleNotifications(`Team ${req.body.team} has been deleted by ${name}`, 'team', memberEmails)
+        return res.status(200).send('Team Deleted Successfully')
+    } catch (error) {
+        return res.status(500).send({error: 'Server Error'})
+    }
+})
 
 export default Router

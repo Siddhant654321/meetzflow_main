@@ -5,6 +5,8 @@ import getChat from '../middleware/getChat.js'
 import multer from 'multer'
 import path from 'path'
 import crypto from 'crypto'
+import fs from 'fs'
+import sharp from 'sharp'
 
 const Router = new express.Router();
 
@@ -41,5 +43,35 @@ const upload = multer({
       files: 10
     }
 });
+
+async function compressImage(req, res, next) {
+    if (!req.files) {
+        return res.status(400).send('No files found in the request');
+    }
+
+    for (let file of req.files) {
+        const inputPath = file.path;
+        if (!fs.existsSync(`./chatImages/${req.team._id}`)) {
+            fs.mkdirSync(`./chatImages/${req.team._id}`);
+        }
+        const outputPath = `./chatImages/${req.team._id}/compressed_${file.filename}`;
+
+        try {
+            await sharp(inputPath)
+                .resize(450, null, { 
+                    withoutEnlargement: true,  
+                    fit: 'inside'  
+                })
+                .jpeg()
+                .toFile(outputPath);
+
+            fs.unlinkSync(inputPath);
+            file.compressedPath = outputPath;
+        } catch (error) {
+            return res.status(500).send({error});
+        }
+    }
+    next();
+}
 
 export default Router;

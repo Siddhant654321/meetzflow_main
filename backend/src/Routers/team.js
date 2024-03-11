@@ -1,7 +1,7 @@
 import express from 'express';
 import auth from '../middleware/auth.js';
 import teamModel from '../Models/teamModel.js'
-
+import chatModel from '../Models/chatModel.js';
 
 const Router = new express.Router();
 
@@ -47,5 +47,26 @@ Router.get('/team/endpoint/oneTeam/:teamName', auth, async (req, res) => {
         return res.status(500).send({error: 'Server Error'})
     }
 })
+
+Router.post('/team/endpoint/new', auth, async (req, res) => {
+    try {
+
+        const teamData = {
+        team: req.body.team,
+        admin: [{
+            name: req.user.name,
+            email: req.user.email
+        }],
+        members: []
+        };
+
+        const newTeam = new teamModel(teamData);
+        const team = await newTeam.save();
+        await new chatModel({teamId: team._id, teamName: team.team}).save()
+        return res.status(201).send({success: 'Team created successfully!'});
+    } catch (error) {
+        return res.status(500).send({error: 'Server Error'});
+    }
+});
 
 export default Router

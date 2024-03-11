@@ -7,6 +7,7 @@ import path from 'path'
 import crypto from 'crypto'
 import fs from 'fs'
 import sharp from 'sharp'
+import teamModel from '../Models/teamModel.js';
 
 const Router = new express.Router();
 
@@ -90,5 +91,33 @@ Router.post('/chat/endpoint/newImage', auth, upload.array('files[]', 10), getCha
         res.status(500).send({error: 'Server Error'})
     }
 });
+
+Router.get('/chat/endpoint/messages/:team', auth, async (req, res) => {
+    try{
+        const page = req.query.page || 1;
+        const chatsPerPage = 20;
+        const team = await teamModel.findOne({
+            team: req.params.team,
+            $or: [
+                {'admin.email': req.user.email},
+                {'members.email': req.user.email}
+            ]
+        })
+        if(team === null){
+            return res.status(404).send({noError: 'No Such Team Exist'})
+        }
+        const chat = await chatModel.aggregate([
+            { $match: { teamId: `${team._id}` } },
+            { $unwind: "$chat" },
+            { $sort: { "chat.time": -1 } },
+            { $skip: (page - 1) * chatsPerPage },
+            { $limit: chatsPerPage },
+            { $project: { chat: 1, _id: 0 } }
+        ]);
+        res.send(chat)
+    } catch (error) {
+        res.status(400).send(error)
+    }
+})
 
 export default Router;

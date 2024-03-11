@@ -131,4 +131,44 @@ Router.patch('/team/endpoint/newAdmin', auth, async (req, res) => {
     }
 })
 
+Router.get('/team/endpoint/getMembers/:team', auth, async (req, res) => {
+    try {
+        const {email} = req.user
+        let team = await teamModel.findOne({team: req.params.team, $or: [
+            { "admin.email": email },
+            { "members.email": email }
+        ]})
+        if(team === null){
+            return res.status(404).send('No Such Team Exist')
+        }
+
+        const emails = [...team.members, ...team.admin].map(person => person.email);
+
+        const accounts = await accountModel.find({email: {$in: emails}});
+
+        const accountsMap = new Map();
+        for (let account of accounts) {
+            accountsMap.set(account.email, account);
+        }
+
+        const mapPerson = (person) => {
+            const account = accountsMap.get(person.email);
+            return {
+                name: person.name,
+                email: person.email,
+                avatar: account ? account.avatar : null
+            };
+        };
+
+        const teamMembers = team.members.map(mapPerson);
+        const teamAdmin = team.admin.map(mapPerson);
+
+        const isAdmin = teamAdmin.some(admin => admin.email === email);
+
+        return res.status(200).send({admin: teamAdmin, members: teamMembers, isAdmin})
+    } catch (error) {
+        return res.status(500).send({error: 'Server Error'})
+    }
+});
+
 export default Router

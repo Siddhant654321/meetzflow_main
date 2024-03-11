@@ -2,6 +2,8 @@ import express from 'express';
 import auth from '../middleware/auth.js';
 import teamModel from '../Models/teamModel.js'
 import chatModel from '../Models/chatModel.js';
+import accountModel from '../Models/accountModel.js';
+import saveNotifications from '../saveNotifications.js';
 
 const Router = new express.Router();
 
@@ -68,5 +70,29 @@ Router.post('/team/endpoint/new', auth, async (req, res) => {
         return res.status(500).send({error: 'Server Error'});
     }
 });
+
+Router.patch('/team/endpoint/newMember', auth, async (req, res) => {
+    try {
+        const {email, name} = req.user;
+        const team = await teamModel.findOne({team: req.body.team, 'admin.email': email})
+        if(team === null){
+            return res.status(404).send({noTeam: 'No Such Team Exist'})
+        }
+        const member = await accountModel.findOne({email: req.body.memberEmail})
+        if(member === null){
+            return res.status(404).send({noAccount: 'Account with this email does not exist'})
+        }
+        if (team.admin.find(admin => admin.email === req.body.memberEmail) || 
+            team.members.find(member => member.email === req.body.memberEmail)) {
+            return res.status(400).send({memberExist: 'Member already exists'});
+        }
+        team.members.push({name: member.name, email: req.body.memberEmail})
+        await team.save();
+        await saveNotifications(`You have been added to Team ${req.body.team} by ${name}`, 'team', member._id);
+        return res.status(200).send('Member Added Successfully')
+    } catch (error) {
+        return res.status(500).send({error: 'Server Error'})
+    }
+})
 
 export default Router

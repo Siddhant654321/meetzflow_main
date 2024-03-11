@@ -250,4 +250,38 @@ Router.patch('/team/endpoint/removeAdmin', auth, async (req, res) => {
     }
 })
 
+Router.patch('/team/endpoint/exitTeam', auth, async (req, res) => {
+    try {
+        const account = req.user
+        const { team } = req.body; 
+        if(!account){
+            return res.status(404).send({message: "We couldn't find your account"})
+        }
+        const teamData = await teamModel.findOne({team,
+            $or: [
+                { "admin.email": account.email },
+                { "members.email": account.email }
+            ]
+        })
+        if (!teamData) {
+            return res.status(404).json({ message: 'Team does not exist' });
+        }
+        
+        const adminIndex = teamData.admin.findIndex(admin => admin.email === account.email);
+        if (adminIndex !== -1) {
+            teamData.admin.splice(adminIndex, 1);
+        }
+
+        const memberIndex = teamData.members.findIndex(member => member.email === account.email);
+        if (memberIndex !== -1) {
+            teamData.members.splice(memberIndex, 1);
+        }
+
+        await teamData.save();
+        return res.status(200).send('You have successfully exited the team')
+    } catch (error) {
+        return res.status(500).send({error: 'Server Error'})
+    }
+})
+
 export default Router

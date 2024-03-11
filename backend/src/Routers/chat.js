@@ -8,8 +8,13 @@ import crypto from 'crypto'
 import fs from 'fs'
 import sharp from 'sharp'
 import teamModel from '../Models/teamModel.js';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
 const Router = new express.Router();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 Router.post('/chat/endpoint/newMessage', auth, getChat, async (req, res) => {
     try{
@@ -117,6 +122,14 @@ Router.get('/chat/endpoint/messages/:team', auth, async (req, res) => {
         res.send(chat)
     } catch (error) {
         res.status(400).send(error)
+    }
+})
+
+Router.get('/chatImages/:teamId/:image', (req, res) => {
+    try {
+        res.sendFile(path.join(__dirname, `../../chatImages/${req.params.teamId}/${req.params.image}`))
+    } catch (error) {
+        res.status(404).send('Image Not Found')
     }
 })
 

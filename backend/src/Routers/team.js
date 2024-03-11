@@ -218,4 +218,36 @@ Router.patch('/team/endpoint/removeMember', auth, async (req, res) => {
     }
 })
 
+Router.patch('/team/endpoint/removeAdmin', auth, async (req, res) => {
+    
+    try {
+        const account = req.user
+        const { team, memberEmail } = req.body; 
+        if(!account){
+            return res.status(404).send({message: "We couldn't find your account"})
+        }
+        let teamData = await teamModel.findOne({team});
+        if (!teamData) {
+            return res.status(404).json({ message: 'This Team does not exist' });
+        }
+        const myAdminIndex = teamData.admin.findIndex(admin => admin.email === account.email);
+        if (myAdminIndex === -1) {
+            return res.status(400).json({ message: 'Only Admin can remove a member of the team' });
+        }
+        const adminIndex = teamData.admin.findIndex(admin => admin.email === memberEmail);
+        if (adminIndex === -1) {
+            return res.status(404).json({ message: 'Account with this email does not exist' });
+        }
+        teamData.admin.splice(adminIndex, 1);
+        const {_id} = await accountModel.findOne({email: memberEmail})
+        if(memberEmail !== account.email){
+            await saveNotifications(`You have been removed from Team ${req.body.team} by ${account.name}`, 'team', _id);
+        }
+        await teamData.save();
+        return res.status(200).send('Admin Removed Successfully')
+    } catch (error) {
+        return res.status(500).send({error: 'Server Error'});
+    }
+})
+
 export default Router

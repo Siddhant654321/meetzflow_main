@@ -95,4 +95,40 @@ Router.patch('/team/endpoint/newMember', auth, async (req, res) => {
     }
 })
 
+Router.patch('/team/endpoint/newAdmin', auth, async (req, res) => {
+    try {
+        const {email, name} = req.user
+        const team = await teamModel.findOne({team: req.body.team, 'admin.email': email})
+        if(team === null){
+            return res.status(404).send({noTeam: 'No Such Team Exist'})
+        }
+        const member = await accountModel.findOne({email: req.body.memberEmail})
+        if(member === null){
+            return res.status(404).send({noAccount: 'Account with this email does not exist'})
+        }
+        team.admin.forEach(value => {
+            if(value.email == req.body.memberEmail){
+                return res.status(400).send({memberExist: 'Admin already exists'})
+            }
+        })
+        let isAlreadyMember = false;
+        team.members.forEach((value,index)=> {
+            if(value.email == req.body.memberEmail){
+                team.members.splice(index, 1)
+                isAlreadyMember = true
+            }
+        })
+        team.admin.push({name: member.name, email: req.body.memberEmail})
+        await team.save();
+        if(isAlreadyMember) {
+            await saveNotifications(`You have been made the admin of Team ${req.body.team} by ${name}`, 'team', member._id);
+        } else {
+            await saveNotifications(`You have been added as an admin to Team ${req.body.team} by ${name}`, 'team', member._id);
+        }
+        return res.status(200).send('Admin Added Successfully')
+    } catch (error) {
+        return res.status(400).send({error})
+    }
+})
+
 export default Router

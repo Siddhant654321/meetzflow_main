@@ -1,6 +1,7 @@
 import {Link, NavLink, Outlet} from 'react-router-dom';
 import { NavHashLink } from "react-router-hash-link";
 import './styles/navbar.css';
+import logo from './assets/20231013_153043_0000.png';
 
 const Navbar = () => {
     
@@ -8,7 +9,7 @@ const Navbar = () => {
         <div>
             <nav className="navbar navbar-expand-md">
                 <div className="container">
-                    <Link to="/">MeetzFlow</Link>
+                    <Link to="/"><img src={logo} height="50px" alt="MeetzFlow" /></Link>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                     </button>

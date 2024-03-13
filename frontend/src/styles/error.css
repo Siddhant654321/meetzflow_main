@@ -1,0 +1,10 @@
+.error{
+    display: block;
+    color:red; 
+    font-size:small;
+    margin: 10px 0px 0px 0px;
+}
+
+.password-btn.has-error {
+    top: calc(50% + 20px);
+} 

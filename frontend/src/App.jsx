@@ -2,6 +2,7 @@ import Navbar from "./Navbar.jsx"
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Signup from "./Signup.jsx";
+import Signin from "./Signin.jsx";
 
 const router = createBrowserRouter([
   {
@@ -11,6 +12,10 @@ const router = createBrowserRouter([
   {
     path: 'get-started',
     element: <Signup />
+  },
+  {
+    path: 'login',
+    element: <Signin />
   }
 ])
 

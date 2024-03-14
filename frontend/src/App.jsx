@@ -14,7 +14,11 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Navbar />,
-    children: [ 
+    children: [
+      {
+        index: true,
+        element: <Homepage />
+      },  
       {
         path: 'get-started',
         element: <Signup />

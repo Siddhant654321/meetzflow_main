@@ -1,0 +1,26 @@
+.not-full-width,
+.full-width {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.not-full-width{
+    width: calc(100vw - 68px);
+}
+
+.full-width{
+    width: 100vw;
+    height: 85vh !important;
+}
+
+.my-spinner{
+    color: rgb(27,0,27);
+}
+
+.members-loading-spinner{
+    width: 100%;
+    text-align: center;
+    margin: 25px 0px 15px 0px;
+}

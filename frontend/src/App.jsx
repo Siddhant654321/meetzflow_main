@@ -5,6 +5,7 @@ import Signup from "./Signup.jsx";
 import Signin from "./Signin.jsx";
 import ResetPassword from "./ResetPassword.jsx";
 import ChangePassword from "./ChangePassword.jsx";
+import VerifyEmail from "./VerifyEmail.jsx";
 
 const router = createBrowserRouter([
   {
@@ -26,7 +27,11 @@ const router = createBrowserRouter([
   {
     path: 'change-password/:code/:email',
     element: <ChangePassword />
-  }
+  },
+  {
+    path: 'verify/:code/:email',
+    element: <VerifyEmail />
+  },
 ])
 
 function App() {

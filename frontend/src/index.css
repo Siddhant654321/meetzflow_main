@@ -9,6 +9,30 @@ body {
   overflow-x: hidden;
 }
 
-#root{
-  min-height: 100vh !important;
+.legal-links{
+  color: white;
+  text-decoration: none;
+}
+
+.row{
+  max-width: calc(100vw - 68px) !important;
+}
+
+.footer-section{
+  display: flex;
+  text-align: left;
+}
+
+.copyright-text{
+  margin-bottom: 0px;
+}
+
+@media (max-width: 768px) {
+  .footer-section{
+    display: block;
+    text-align: center;
+  }
+  .copyright-text{
+    margin-bottom: 10px;
+  }
 }

@@ -2,6 +2,7 @@ import {Link, NavLink, Outlet} from 'react-router-dom';
 import { NavHashLink } from "react-router-hash-link";
 import './styles/navbar.css';
 import logo from './assets/20231013_153043_0000.png';
+import Footer from './Footer';
 
 const Navbar = () => {
     
@@ -35,6 +36,7 @@ const Navbar = () => {
                 </div>
             </nav>
             <Outlet />
+            <Footer />
         </div>
     )
 }

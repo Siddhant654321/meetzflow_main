@@ -9,6 +9,10 @@ body {
   overflow-x: hidden;
 }
 
+#root{ 
+  min-height: 100vh;
+}
+
 .legal-links{
   color: white;
   text-decoration: none;

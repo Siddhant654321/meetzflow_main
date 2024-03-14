@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Signup from "./Signup.jsx";
 import Signin from "./Signin.jsx";
 import ResetPassword from "./ResetPassword.jsx";
+import ChangePassword from "./ChangePassword.jsx";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
     path: 'forgot-password',
     element: <ResetPassword />
   },
+  {
+    path: 'change-password/:code/:email',
+    element: <ChangePassword />
+  }
 ])
 
 function App() {

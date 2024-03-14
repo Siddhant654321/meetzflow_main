@@ -7,6 +7,7 @@ import ResetPassword from "./ResetPassword.jsx";
 import ChangePassword from "./ChangePassword.jsx";
 import VerifyEmail from "./VerifyEmail.jsx";
 import Contact from "./Contact.jsx";
+import NotFound from "./NotFound.jsx";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
     path: 'contact',
     element: <Contact />
   },
+  {
+    path: '*',
+    element: <NotFound />
+  }
 ])
 
 function App() {

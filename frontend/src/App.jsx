@@ -8,40 +8,43 @@ import ChangePassword from "./ChangePassword.jsx";
 import VerifyEmail from "./VerifyEmail.jsx";
 import Contact from "./Contact.jsx";
 import NotFound from "./NotFound.jsx";
+import Homepage from "./Homepage.jsx";
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Navbar />,
+    children: [ 
+      {
+        path: 'get-started',
+        element: <Signup />
+      },
+      {
+        path: 'login',
+        element: <Signin />
+      },
+      {
+        path: 'forgot-password',
+        element: <ResetPassword />
+      },
+      {
+        path: 'change-password/:code/:email',
+        element: <ChangePassword />
+      },
+      {
+        path: 'verify/:code/:email',
+        element: <VerifyEmail />
+      },
+      {
+        path: 'contact',
+        element: <Contact />
+      },
+      {
+        path: '*',
+        element: <NotFound />
+      }
+    ]
   },
-  {
-    path: 'get-started',
-    element: <Signup />
-  },
-  {
-    path: 'login',
-    element: <Signin />
-  },
-  {
-    path: 'forgot-password',
-    element: <ResetPassword />
-  },
-  {
-    path: 'change-password/:code/:email',
-    element: <ChangePassword />
-  },
-  {
-    path: 'verify/:code/:email',
-    element: <VerifyEmail />
-  },
-  {
-    path: 'contact',
-    element: <Contact />
-  },
-  {
-    path: '*',
-    element: <NotFound />
-  }
 ])
 
 function App() {

@@ -6,6 +6,7 @@ import Signin from "./Signin.jsx";
 import ResetPassword from "./ResetPassword.jsx";
 import ChangePassword from "./ChangePassword.jsx";
 import VerifyEmail from "./VerifyEmail.jsx";
+import Contact from "./Contact.jsx";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
   {
     path: 'verify/:code/:email',
     element: <VerifyEmail />
+  },
+  {
+    path: 'contact',
+    element: <Contact />
   },
 ])
 

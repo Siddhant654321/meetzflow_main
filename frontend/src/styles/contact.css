@@ -1,0 +1,10 @@
+.contact-main-div{
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+}
+
+
+.contact-secondary-div{
+    max-height: fit-content;
+}

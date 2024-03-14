@@ -9,6 +9,7 @@ import VerifyEmail from "./VerifyEmail.jsx";
 import Contact from "./Contact.jsx";
 import NotFound from "./NotFound.jsx";
 import Homepage from "./Homepage.jsx";
+import PrivacyPolicy from "./PrivacyPolicy.jsx";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
         index: true,
         element: <Homepage />
       },  
+      {
+        path: 'privacy-policy',
+        element: <PrivacyPolicy />
+      },
       {
         path: 'get-started',
         element: <Signup />

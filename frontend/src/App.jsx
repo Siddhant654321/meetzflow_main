@@ -12,6 +12,7 @@ import Homepage from "./Homepage.jsx";
 import PrivacyPolicy from "./PrivacyPolicy.jsx";
 import TermsAndConditions from './TermsAndConditions.jsx';
 import Error from "./Error.jsx";
+import Sidebar from "./Sidebar.jsx";
 
 const router = createBrowserRouter([
   {
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
       }
     ]
   },
+  {
+    path: 'app',
+    element: <Sidebar />,
+  }
 ])
 
 function App() {

@@ -1,0 +1,9 @@
+.add-new-team-btn{
+    width: fit-content !important;
+}
+
+.add-new-team-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

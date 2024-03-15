@@ -1,0 +1,38 @@
+.custom-modal-chat{
+    overflow: auto;
+    max-height: 260px;
+}
+
+.modal-add-new-btn{
+    color: white;
+    background-color: #6f42c1 !important;
+    border: none;
+}
+
+.modal-close-btn{
+    border: none;
+}
+
+.modal-add-new-btn:hover{
+    background-color: #6e42c1d7 !important;
+}
+
+.modal-add-new-btn:active{
+    background-color: #6e42c1b2 !important;
+}
+
+
+.modal-heading-members{
+    width: 100%;
+    text-align: center;
+}
+
+.add-new-member-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.add-new-member-btn{
+    width: fit-content !important;
+}

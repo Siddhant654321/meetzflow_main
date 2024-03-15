@@ -11,6 +11,7 @@ import NotFound from "./NotFound.jsx";
 import Homepage from "./Homepage.jsx";
 import PrivacyPolicy from "./PrivacyPolicy.jsx";
 import TermsAndConditions from './TermsAndConditions.jsx';
+import Error from "./Error.jsx";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
       {
         path: '*',
         element: <NotFound />
+      },
+      {
+        path: 'error',
+        element: <Error />
       }
     ]
   },

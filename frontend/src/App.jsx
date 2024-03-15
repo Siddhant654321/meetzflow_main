@@ -13,6 +13,7 @@ import PrivacyPolicy from "./PrivacyPolicy.jsx";
 import TermsAndConditions from './TermsAndConditions.jsx';
 import Error from "./Error.jsx";
 import Sidebar from "./Sidebar.jsx";
+import GoogleSignIn from "./GoogleSignIn.jsx";
 
 const router = createBrowserRouter([
   {
@@ -68,6 +69,12 @@ const router = createBrowserRouter([
   {
     path: 'app',
     element: <Sidebar />,
+    children:[
+      {
+        path: 'setup',
+        element: <GoogleSignIn />
+      },
+    ]
   }
 ])
 

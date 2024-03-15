@@ -1,0 +1,10 @@
+.signInGoogleText{
+    display: inline-block;
+    font-size: 20px;
+}
+
+.signInGoogleDiv{
+    width: 100vw;
+    text-align: center;
+    padding: 7vh 15px 0px 15px;
+}

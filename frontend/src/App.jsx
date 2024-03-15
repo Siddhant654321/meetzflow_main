@@ -10,6 +10,7 @@ import Contact from "./Contact.jsx";
 import NotFound from "./NotFound.jsx";
 import Homepage from "./Homepage.jsx";
 import PrivacyPolicy from "./PrivacyPolicy.jsx";
+import TermsAndConditions from './TermsAndConditions.jsx';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: 'privacy-policy',
         element: <PrivacyPolicy />
+      },
+      {
+        path: 'terms-and-conditions',
+        element: <TermsAndConditions />
       },
       {
         path: 'get-started',

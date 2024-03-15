@@ -4,6 +4,9 @@ import { Outlet } from 'react-router-dom';
 import './styles/sidebar.css'
 import SidebarItems from './Components/SidebarItems';
 import useAxios from './CustomHooks/useAxios';
+import {configureStore} from '@reduxjs/toolkit';
+import teamReducer from './reducers/teamReducer';
+import { Provider } from 'react-redux';
 
 const Sidebar = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(null);
@@ -11,6 +14,14 @@ const Sidebar = () => {
     const [show, setShow] = useState(false);
     const axios = useAxios();
     const location = useLocation();
+
+
+    const store = configureStore({
+        reducer: {
+            teamData: teamReducer
+        }
+    })
+
 
     const toggleShow = async () => {
         setShow(!show);
@@ -65,7 +76,9 @@ const Sidebar = () => {
             </div>
             <div>
                 <div className={`${show ? 'overlay-page' : ''} darken`}></div>
-                <Outlet />
+                <Provider store={store}>
+                    <Outlet />
+                </Provider>
             </div>
         </div>
     )

@@ -1,0 +1,142 @@
+.item-div-main{
+    border: 1px solid black;
+    margin: 10px 20px;
+    padding: 0px 20px;
+    border-radius: 8px;
+}
+
+.minimum-heighted-div{
+    height: fit-content;
+}
+
+.item-div-main .title {
+    border: solid rgba(128, 128, 128, 0.758);
+    border-width: 0px 0px 1px 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+}
+
+.title p {
+    display: inline-block;
+    flex: 1;
+}
+
+.item-div-main p{
+    margin: 0px;
+}
+
+.content{
+    padding: 14px 10px;
+}
+
+.view-more-btn,
+.view-btn button,
+.create-new-btn{
+    background-color: #6f42c1;
+    color: white;
+    white-space: nowrap;
+    border: 0px;
+    padding: 8px 12px !important;
+    transition: opacity 0.3s;
+    border-radius: 4px;
+    height: fit-content !important;
+    margin-left: 15px;
+}
+
+.view-more-btn:hover,
+.view-btn button:hover,
+.create-new-btn:hover{
+    opacity: 0.9;
+}
+
+.view-more-btn:active,
+.view-btn button:active,
+.create-new-btn:active{
+    opacity: 0.7;
+}
+
+
+/* .view-btn{
+    text-align: right;
+}
+
+.item-time{
+    flex-grow: 1;
+    text-align: center;
+} */
+
+.item-container{
+    padding: 10px;
+    display: flex;
+    align-items: center !important;
+}
+
+.item-time,
+.item-name,
+.view-btn{
+    display: inline-block;
+    vertical-align: middle;
+    height: fit-content;
+}
+
+.item-time{
+    padding: 0px 30px;
+}
+
+.item-name{
+    flex: 1;
+}
+
+.view-more-btn{
+    margin: auto;
+}
+
+@media (max-width: 600px){
+    .item-container-mobile{
+        flex-wrap: wrap !important;
+        padding: 10px 0px;
+    }
+    .item-bottom-border{
+        border-bottom: 1px black solid !important;
+    }
+    .break-line-flex{
+        flex-basis: 100%;
+    }
+    .view-btn-mobile{
+        margin: 10px 20px;
+        width: 100%;
+    }
+    .view-btn-mobile>button{
+        width: 100%;
+        text-align: center;
+        margin: 0px;
+    }
+    .item-name{
+        width: 50%;
+    }
+    .item-time{
+        width: 50%;
+    }
+}
+
+.scheduler-link-btn{
+    background-color: transparent;
+    border-radius: 50%;
+    border: 1px solid #6f42c1;
+    color: #6f42c1;
+    transition: opacity 0.3s;
+    font-size: 20px;
+    padding: 3px 8px;
+    margin-left: 15px;
+}
+
+.scheduler-link-btn:hover{
+    color: white;
+    background-color: #6f42c1;
+}
+
+.scheduler-link-btn:active{
+    opacity: 0.7;
+}

@@ -84,6 +84,10 @@ const router = createBrowserRouter([
         path: 'notifications',
         element: <Notifications />
       },
+      {
+        path: 'teams',
+        element: <Teams />
+      },
     ]
   }
 ])

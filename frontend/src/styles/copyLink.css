@@ -1,0 +1,23 @@
+.copy-to-clipboard{
+    border-radius: 10px;
+    background-color: rgb(27, 27, 27);
+    padding: 10px;
+    display: flex;
+    align-content: center;
+}
+
+.copy-to-clipboard>button{
+    border: none;
+    color: white;
+    background-color: transparent;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.copy-to-clipboard>a{
+    color: white;
+    text-decoration: none;
+    flex: 1;
+    max-width: 90%;
+    overflow-wrap: break-word;
+}

@@ -18,6 +18,7 @@ import Dashboard from "./Dashboard.jsx";
 import Notifications from "./Notifications.jsx";
 import Teams from "./Teams.jsx";
 import Meetings from "./Meetings.jsx";
+import About from "./About.jsx";
 
 const router = createBrowserRouter([
   {
@@ -93,6 +94,10 @@ const router = createBrowserRouter([
       {
         path: 'meetings',
         element: <Meetings />
+      },
+      {
+        path: 'profile',
+        element: <About />
       },
     ]
   }

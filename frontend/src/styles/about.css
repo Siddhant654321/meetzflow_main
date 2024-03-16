@@ -1,0 +1,118 @@
+.main-container{
+    margin: 100px 10% 10% 10%;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 80%;
+    display: flex;
+    align-items: center;
+    margin: auto;
+    flex-direction: column;
+    position: relative;
+    top: 125px;
+}
+
+.submit-btn{
+    margin-top: 15px;
+    background-color: #6f42c1;
+    color: white;
+    width: 100%;
+    border: 0px;
+    padding: 8px 12px;
+    transition: opacity 0.3s;
+    width: 100px;
+    margin: auto;
+    border-radius: 4px;
+}
+
+.submit-btn:hover{
+    opacity: 0.9;
+}
+
+.submit-btn:active{
+    opacity: 0.7;
+}
+
+
+.main-div{
+    display: flex;
+    width: calc(100vw - 68px);
+    align-items: center;
+}
+
+.img-container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    bottom: 100px;
+    margin-bottom: -100px;
+    width: fit-content !important;
+}
+
+.img-container > img{
+    display: inline-block;
+    background-color: white;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.img-container > img,
+.edit-image{
+    height: 200px;
+    width: 200px !important;
+}
+
+.edit-image>h1 {
+    margin: auto;
+    align-items: center;
+    color: white;
+}
+
+.edit-image {
+    position: absolute;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.edit-image {
+    display: none;
+}
+
+.img-container:hover .edit-image {
+    display: flex;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .img-container,
+    .img-container > img,
+    .edit-image{
+        height: 126px !important;
+        width: 126px !important;
+    }
+    .img-container{
+        bottom: 63px;
+        margin-bottom: -63px;
+    }
+}
+
+
+.main-container> div{
+    width: 100%;
+    flex: 1;
+}
+
+.about-menu-icon{
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 25px;
+}
+
+.about-menu-div{
+    display: flex;
+    justify-content: space-evenly;
+}

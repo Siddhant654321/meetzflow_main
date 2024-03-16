@@ -1,0 +1,17 @@
+.dashboard{
+    width: calc(100vw - 68px);
+    min-height: 60vh;
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.change-min-height{
+    min-height: 20vh !important;
+}
+
+@media (max-width: 992px) {
+    .dashboard{
+        min-height: 90vh;
+    }
+}

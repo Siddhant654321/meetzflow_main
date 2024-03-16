@@ -14,6 +14,7 @@ import TermsAndConditions from './TermsAndConditions.jsx';
 import Error from "./Error.jsx";
 import Sidebar from "./Sidebar.jsx";
 import GoogleSignIn from "./GoogleSignIn.jsx";
+import Dashboard from "./Dashboard.jsx";
 
 const router = createBrowserRouter([
   {
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
       {
         path: 'setup',
         element: <GoogleSignIn />
+      },
+      {
+        index: true,
+        element: <Dashboard />
       },
     ]
   }

@@ -16,6 +16,7 @@ import Sidebar from "./Sidebar.jsx";
 import GoogleSignIn from "./GoogleSignIn.jsx";
 import Dashboard from "./Dashboard.jsx";
 import Notifications from "./Notifications.jsx";
+import Teams from "./Teams.jsx";
 
 const router = createBrowserRouter([
   {

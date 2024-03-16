@@ -17,6 +17,7 @@ import GoogleSignIn from "./GoogleSignIn.jsx";
 import Dashboard from "./Dashboard.jsx";
 import Notifications from "./Notifications.jsx";
 import Teams from "./Teams.jsx";
+import Meetings from "./Meetings.jsx";
 
 const router = createBrowserRouter([
   {
@@ -88,6 +89,10 @@ const router = createBrowserRouter([
       {
         path: 'teams',
         element: <Teams />
+      },
+      {
+        path: 'meetings',
+        element: <Meetings />
       },
     ]
   }

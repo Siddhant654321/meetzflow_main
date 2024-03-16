@@ -15,6 +15,7 @@ import Error from "./Error.jsx";
 import Sidebar from "./Sidebar.jsx";
 import GoogleSignIn from "./GoogleSignIn.jsx";
 import Dashboard from "./Dashboard.jsx";
+import Notifications from "./Notifications.jsx";
 
 const router = createBrowserRouter([
   {
@@ -78,6 +79,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Dashboard />
+      },
+      {
+        path: 'notifications',
+        element: <Notifications />
       },
     ]
   }

@@ -19,6 +19,7 @@ import Notifications from "./Notifications.jsx";
 import Teams from "./Teams.jsx";
 import Meetings from "./Meetings.jsx";
 import About from "./About.jsx";
+import NewScheduler from "./NewScheduler.jsx";
 
 const router = createBrowserRouter([
   {
@@ -98,6 +99,10 @@ const router = createBrowserRouter([
       {
         path: 'profile',
         element: <About />
+      },
+      {
+        path: 'meetings/scheduler/new',
+        element: <NewScheduler />
       },
     ]
   }

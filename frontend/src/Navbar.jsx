@@ -20,13 +20,13 @@ const Navbar = () => {
                                 <NavLink className={(navData) => navData.isActive ? "active-nav nav-link" : "text-dark nav-link"} to="/">Home</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavHashLink smooth className="nav-link text-dark" activeClassName="active-nav" to="/#features">Features</NavHashLink>
+                                <NavHashLink smooth className={(navData) => navData.isActive ? "text-dark nav-link" : "text-dark nav-link"} to="/#features">Features</NavHashLink>
                             </li>
                             <li className="nav-item">
-                                <NavHashLink smooth className="nav-link text-dark" activeClassName="active-nav" to="/#testimonials">Testimonials</NavHashLink>
+                                <NavHashLink smooth className={(navData) => navData.isActive ? "text-dark nav-link" : "text-dark nav-link"} to="/#testimonials">Testimonials</NavHashLink>
                             </li>
                             <li className="nav-item">
-                                <NavHashLink smooth className="nav-link text-dark" activeClassName="active-nav" to="/#faq">FAQ</NavHashLink>
+                                <NavHashLink smooth className={(navData) => navData.isActive ? "text-dark nav-link" : "text-dark nav-link"} to="/#faq">FAQ</NavHashLink>
                             </li>
                             <li className="nav-item">
                                 <NavLink className={(navData) => navData.isActive ? "active-nav nav-link" : "text-dark nav-link"} to="/contact">Contact</NavLink>

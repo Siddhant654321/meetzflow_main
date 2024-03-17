@@ -5,3 +5,7 @@
 .main-navbar{
     font-weight: bold !important;
 }
+
+.text-dark-important{
+    color: black !important;
+}

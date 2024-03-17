@@ -1,0 +1,10 @@
+.chat-date-text{
+    display: inline-block;
+    color: #3b3b3bc0;
+    margin-bottom: 15px;
+}
+
+.chat-date-header {
+    width: 100%;
+    text-align: center;
+}

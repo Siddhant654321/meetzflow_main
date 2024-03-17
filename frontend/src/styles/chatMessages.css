@@ -1,0 +1,47 @@
+.chat-message{
+    background-color: #ffeb579c;
+    display: inline-block;
+    border-radius: 6px;
+}
+
+.image-message{
+    max-height: 400px;
+    width: 400px;
+    object-fit: cover;
+}
+
+.chat-message p{
+    margin: 10px;
+}
+
+.chat-details{
+    font-size: 13px;
+    margin: 4px 0px 15px 0px;
+    color: #727272;
+}
+
+.sent-by-other{
+    justify-self:left;
+}
+
+.sent-by-me .chat-message{
+    background-color: #6f42c1;
+    color: white;
+}
+
+.sent-by-me{
+    margin-left: auto;
+    text-align: right;
+}
+
+.chat-message-container{
+    max-width: 70%;
+}
+
+@media (max-width: 768px) {
+    .image-message{
+        max-height: 240px;
+        width: 240px;
+        margin-left: -60px;
+    }
+}

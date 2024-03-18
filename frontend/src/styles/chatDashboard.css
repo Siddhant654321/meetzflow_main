@@ -1,0 +1,153 @@
+.chat-dashboard-main-div{
+    width: calc(100vw - 68px);
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.chat-dashboard-secondary-div{
+    width: 90%;
+    border: 1px solid rgb(27,0,27);
+    border-radius: 10px;
+    display: inline-block;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.chat-header{
+    width: 100%;
+    text-align: center;
+    display: flex;
+    border: rgb(27,0,27) solid;
+    border-width: 0px 0px 1px 0px;
+    padding: 10px 0px;
+    align-items: center;
+}
+
+.chat-dashboard-secondary-div button{
+    background-color: transparent;
+    font-size: 25px;
+    border: none;
+    margin-right: 12px;
+}
+
+.chat-header h1{
+    display: inline-block;
+    flex: 1;
+    padding-left: 12px;
+}
+
+.chat-messages-div{
+    padding: 10px;
+    display: flex;
+    flex: 1;
+    overflow: auto;
+    flex-direction: column;
+}
+
+.chat-message-form{
+    min-width: 300px !important;
+    width: 70% !important;
+    margin: auto;
+    margin-top: 13px !important;
+}
+
+.chat-message-form input{
+    border-color: black;
+    border-width: 1px 0px 1px 1px;
+}
+
+.chat-message-form input:focus{
+    outline: none;
+    box-shadow: none;
+    border-color: black;
+}
+
+.chat-send-button{
+    color: white;
+    background-color: #6f42c1 !important;
+    border: 1px solid black !important;
+    border-radius: 0px 6px 6px 0px;
+}
+
+.insert-file-chat-button,
+.meeting-chat-button,
+.chat-send-button{
+    font-size: 20px !important;
+    padding: 5px 8px !important;
+}
+
+.insert-file-chat-button,
+.meeting-chat-button{
+    border: solid black !important;
+    border-width: 1px 0px 1px 0px !important;
+    background-color: transparent;
+    margin-right: 0px !important;
+    padding-right: 12px !important;
+    padding-left: 0px !important;
+}
+
+.meeting-chat-button{
+    padding-left: 12px !important;
+}
+
+.send-button:hover{
+    background-color: #6e42c1d7 !important;
+}
+
+.send-button:active{
+    background-color: #6e42c1b2 !important;
+}
+
+.schedule-meeting-form{
+    padding: 0px !important;
+    max-width: 100%;
+}
+
+#show-more-btn{
+    background-color: transparent;
+    font-size: 18px;
+    border: 1px black solid;
+    border-radius: 4px;
+    padding: 4px 7px;
+    color: rgb(66, 66, 66);
+    border-color: rgb(66, 66, 66);
+    width: fit-content;
+    margin: 7px auto;
+}
+
+#show-more-btn:hover{
+    color: rgb(37, 37, 37);
+    border-color: rgb(37, 37, 37);
+    cursor: pointer;
+}
+
+#show-more-btn:active{
+    color: rgb(65, 65, 65);
+    border-color: rgb(65, 65, 65);
+}
+
+.meeting-message{
+    text-align: center;
+    color: rgb(74, 74, 74);
+    font-style: italic;
+    margin: 10px;
+}
+
+@media (max-width: 768px){
+    .chat-header{
+        text-align: left;
+    }
+    .chat-header h1{
+        font-size: 24px;
+    }
+    .chat-menu-icon{
+        top: 8px !important;
+    }
+}
+
+

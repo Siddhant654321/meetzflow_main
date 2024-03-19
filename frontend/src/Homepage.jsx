@@ -86,7 +86,7 @@ const Homepage = () => {
                         lottieAnimation='https://lottie.host/a1e9fa29-5dab-4cfd-956c-2dbd0f5e0f1c/b0FrRhVGey.lottie'
                     />
                     <FeaturesScreen
-                        imageOn='right'
+                        imageOn='left'
                         title="All-In-One Dashboard"
                         text="You will find Your upcoming and past meetings, your teams, your notifications and your schedulers all in one place, totally organized for you to give you a boost of productivity"
                         lottieAnimation='https://lottie.host/bec97ed0-8af6-4362-8e61-19423be7b6c5/Ys6nFhEhMQ.lottie'

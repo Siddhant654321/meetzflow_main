@@ -21,6 +21,7 @@ import Meetings from "./Meetings.jsx";
 import About from "./About.jsx";
 import NewScheduler from "./NewScheduler.jsx";
 import ChatDashboard from "./ChatDashboard.jsx";
+import Profile from "./Profile.jsx";
 
 const router = createBrowserRouter([
   {
@@ -108,6 +109,10 @@ const router = createBrowserRouter([
       {
         path: 'teams/:name/chat',
         element: <ChatDashboard />
+      },
+      {
+        path: 'profile/:email',
+        element: <Profile />
       },
     ]
   }

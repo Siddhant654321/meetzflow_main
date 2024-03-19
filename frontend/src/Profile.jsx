@@ -3,7 +3,7 @@ import InputFields from './Components/InputFields';
 import AlertPopup from './Components/AlertPopup';
 import {useParams} from 'react-router-dom';
 import fetchUserData from './utilities/fetchUserData';
-import profileImage from './images/download.png';
+import profileImage from './assets/download.png';
 import MySpinner from './Components/MySpinner';
 
 

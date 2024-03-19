@@ -23,6 +23,7 @@ import NewScheduler from "./NewScheduler.jsx";
 import ChatDashboard from "./ChatDashboard.jsx";
 import Profile from "./Profile.jsx";
 import UpdateScheduler from "./UpdateScheduler.jsx";
+import MeetingView from "./MeetingView.jsx";
 
 const router = createBrowserRouter([
   {
@@ -119,6 +120,10 @@ const router = createBrowserRouter([
         path: 'meetings/scheduler/update/:name',
         element: <UpdateScheduler />
       },
+      {
+        path: 'meetings/:meetingId',
+        element: <MeetingView />
+      }
     ]
   }
 ])

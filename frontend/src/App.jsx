@@ -24,6 +24,7 @@ import ChatDashboard from "./ChatDashboard.jsx";
 import Profile from "./Profile.jsx";
 import UpdateScheduler from "./UpdateScheduler.jsx";
 import MeetingView from "./MeetingView.jsx";
+import SchedulerTemplate from "./SchedulerTemplate.jsx";
 
 const router = createBrowserRouter([
   {
@@ -125,6 +126,10 @@ const router = createBrowserRouter([
         element: <MeetingView />
       }
     ]
+  },
+  {
+    path: 'schedule/:name',
+    element: <SchedulerTemplate />
   }
 ])
 

@@ -20,7 +20,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const corsOptions = {
-    origin: 'https://meetzflow.com', 
+    origin: process.env.FRONTEND_URL, 
     credentials: true
 };
 const server = createServer(app);

@@ -198,7 +198,7 @@ const verificationEmail = (code, email, name) => {
                   <tbody>
                     <tr>
                     <td align="center" bgcolor="#1B001B" class="inner-td" style="border-radius:6px; font-size:16px; text-align:center; background-color:inherit;">
-                      <a href="https://meetzflow.com/verify/${code}/${email}" style="background-color:#1B001B; border:1px solid #1b001b; border-color:#1b001b; border-radius:0px; border-width:1px; color:#ffffff; display:inline-block; font-size:14px; font-weight:normal; letter-spacing:0px; line-height:normal; padding:12px 40px 12px 40px; text-align:center; text-decoration:none; border-style:solid; font-family:inherit;" target="_blank">Verify Email Now</a>
+                      <a href="${process.env.FRONTEND_URL}/verify/${code}/${email}" style="background-color:#1B001B; border:1px solid #1b001b; border-color:#1b001b; border-radius:0px; border-width:1px; color:#ffffff; display:inline-block; font-size:14px; font-weight:normal; letter-spacing:0px; line-height:normal; padding:12px 40px 12px 40px; text-align:center; text-decoration:none; border-style:solid; font-family:inherit;" target="_blank">Verify Email Now</a>
                     </td>
                     </tr>
                   </tbody>

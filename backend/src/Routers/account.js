@@ -36,7 +36,7 @@ Router.post('/account/endpoint/newSignUp', async (req, res) => {
             to: user.email,
             from: 'admin@meetzflow.com',
             subject: 'Verify Your Email - MeetzFlow',
-            text: `Please verify your email address to get access to features like team collaboration and meeting scheduling - https://meetzflow.com/verify/${code}/${user.email}`,
+            text: `Please verify your email address to get access to features like team collaboration and meeting scheduling - ${process.env.FRONTEND_URL}/verify/${code}/${user.email}`,
             html: verificationEmail(code, user.email, user.name)
         };
         sgMail.send(msg);
@@ -113,7 +113,7 @@ Router.post('/endpoint/account/newVerificationCode', async (req,res) => {
             to: user.email,
             from: 'admin@meetzflow.com',
             subject: 'Verify Your Email - MeetzFlow',
-            text: `Please verify your email address to get access to features like team collaboration and meeting scheduling - https://meetzflow.com/verify/${code}/${user.email}`,
+            text: `Please verify your email address to get access to features like team collaboration and meeting scheduling - ${process.env.FRONTEND_URL}/verify/${code}/${user.email}`,
             html: verificationEmail(code, user.email, user.name)
         };
         sgMail.send(msg);
@@ -139,7 +139,7 @@ Router.post('/endpoint/account/forgot-password', async (req,res) => {
             to: user.email,
             from: 'admin@meetzflow.com',
             subject: 'Change Your Password - MeetzFlow',
-            text: `Please follow this link to set a new password - https://meetzflow.com/change-password/${code}/${user.email}`,
+            text: `Please follow this link to set a new password - ${process.env.FRONTEND_URL}/change-password/${code}/${user.email}`,
             html: forgotPassword(code, user.email)
         };
         sgMail.send(msg);

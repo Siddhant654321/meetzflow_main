@@ -11,6 +11,7 @@ import axios from 'axios';
 import timeZoneList from './utilities/timeZoneList';
 import AlertPopup from './Components/AlertPopup'
 import useHandleMeetingBooking from './CustomHooks/useHandleMeetingBooking';
+import config from './config';
 
 const SchedulerTemplate = () => {
     const today = new Date()
@@ -97,7 +98,7 @@ const SchedulerTemplate = () => {
                 </div>)
             setIsBtnDisabled(true)
             try{
-                const response = await axios.post('https://meetzflow.com/meetings/endpoint/new', {...templateVariables, scheduler: schedulerName})
+                const response = await axios.post(`${config.backend_url}/meetings/endpoint/new`, {...templateVariables, scheduler: schedulerName})
                 setPopupData({body: response.data, header: 'Scheduled'})
                 setShowPopup(true)
                 setBtn(<><span>Meeting Scheduled </span> <i className="bi bi-check-lg"></i></>)

@@ -3,6 +3,7 @@ import { useState } from 'react'
 import axios from 'axios';
 import validator from 'email-validator';
 import './styles/contact.css'
+import config from './config';
 
 export default function Contact() {
     const [inputState, setInputState] = useState(() => ({ name: '', email: '', message: '' }))
@@ -35,7 +36,7 @@ export default function Contact() {
             </div>)
             setIsBtnDisabled(true)
             try {
-                await axios.post('https://meetzflow.com/contact/new/message', inputState)
+                await axios.post(`${config.backend_url}/contact/new/message`, inputState)
                 setBtn(<>Message Sent <i className="bi bi-check-lg"></i></>)
                 setSuccessMessage(`We have received your message. We will get in touch with you as soon as possible.`)
             } catch (error) {

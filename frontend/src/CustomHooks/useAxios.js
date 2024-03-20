@@ -1,11 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import config from '../config';
 
 export function useAxios() {
   const navigate = useNavigate();
+  const baseURL = config.backend_url
   
   const instance = axios.create({
-    baseURL: 'https://meetzflow.com/',
+    baseURL,
   });
 
   instance.interceptors.response.use(

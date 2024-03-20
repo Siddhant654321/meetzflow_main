@@ -4,6 +4,7 @@ import './styles/loginAndSignup.css'
 import InputFields from './Components/InputFields';
 import axios from 'axios'
 import dataStorage from './utilities/dataStorage'
+import config from './config';
 
 const ChangePassword = () => {
     
@@ -37,7 +38,7 @@ const ChangePassword = () => {
                     <span style={{marginLeft: '6px'}}>Loading...</span>
                 </div>)
                 setIsBtnDisabled(true)
-                const response = await axios.patch(`https://meetzflow.com/endpoint/change-password/${code}/${email}`, { password: inputState.password}, {withCredentials: true})
+                const response = await axios.patch(`${config.backend_url}/endpoint/change-password/${code}/${email}`, { password: inputState.password}, {withCredentials: true})
                 setSuccessMessage('Password has been changed successfully!')
                 dataStorage({
                     loggedIn: true,

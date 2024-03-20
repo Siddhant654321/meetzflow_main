@@ -1,4 +1,5 @@
 import useScrollToTop from './CustomHooks/useScrollToTop'
+import config from './config'
 
 export default function PrivacyPolicy() {
     useScrollToTop()
@@ -6,7 +7,7 @@ export default function PrivacyPolicy() {
         <div className='container'>
             <h1>Privacy Policy</h1>
 
-            <p>At MeetzFlow, accessible from https://meetzflow.com, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by MeetzFlow and how we use it.</p>
+            <p>At MeetzFlow, accessible from {config.backend_url}, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by MeetzFlow and how we use it.</p>
 
             <p>If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us.</p>
 

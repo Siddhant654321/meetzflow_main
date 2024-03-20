@@ -1,4 +1,5 @@
 import useScrollToTop from './CustomHooks/useScrollToTop'
+import config from './config'
 
 
 export default function TermsAndConditions() {
@@ -9,7 +10,7 @@ export default function TermsAndConditions() {
 
             <p>Welcome to MeetzFlow!</p>
 
-            <p>These terms and conditions outline the rules and regulations for the use of MeetzFlow's Website, located at https://meetzflow.com.</p>
+            <p>These terms and conditions outline the rules and regulations for the use of MeetzFlow's Website, located at {config.backend_url}.</p>
 
             <p>By accessing this website we assume you accept these terms and conditions. Do not continue to use MeetzFlow if you do not agree to take all of the terms and conditions stated on this page.</p>
 

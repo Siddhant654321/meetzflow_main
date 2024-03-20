@@ -14,6 +14,7 @@ import formatDate from "./utilities/formatDate";
 import MyCalendar from './Components/MyCalendar';
 import 'react-calendar/dist/Calendar.css';
 import InputFields from "./Components/InputFields";
+import config from "./config";
 
 const ChatDashboard = () => {
     let name = useParams().name;
@@ -74,7 +75,7 @@ const ChatDashboard = () => {
                     localVar = formattedDate
                 }
                 if(message.chat.hasOwnProperty('imageMessage')){
-                    return oldMessages.push(<ChatMessages key={message.chat._id} senderName={message.chat.sentByName} senderTime={formatTime(chatTime)} sender={message.chat.sentByEmail === localStorage.getItem('email') ? 'me' : 'other'} image={`https://meetzflow.com/chatImages/${teamData.data._id}/${message.chat.imageMessage}`} />)
+                    return oldMessages.push(<ChatMessages key={message.chat._id} senderName={message.chat.sentByName} senderTime={formatTime(chatTime)} sender={message.chat.sentByEmail === localStorage.getItem('email') ? 'me' : 'other'} image={`${config.backend_url}/chatImages/${teamData.data._id}/${message.chat.imageMessage}`} />)
                 } else if (message.chat.hasOwnProperty('meetingMessage')){
                     return oldMessages.push(<p className='meeting-message'>{message.chat.sentByEmail === localStorage.getItem('email') ? 'You have ' + message.chat.meetingMessage : `${message.chat.sentByName } has ${message.chat.meetingMessage}`} - <a href={message.chat.meetingLink}>Meeting Link</a></p>)
                 }
@@ -122,7 +123,7 @@ const ChatDashboard = () => {
 
 
     useEffect(() => {
-        socketRef.current = io('https://meetzflow.com/', {
+        socketRef.current = io(`${config.backend_url}/`, {
             query: {
                 userEmail:  localStorage.getItem('email'),
                 teamName: name

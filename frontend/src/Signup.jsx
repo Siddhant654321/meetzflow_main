@@ -5,6 +5,7 @@ import axios from 'axios';
 import dataStorage from './utilities/dataStorage';
 import InputFields from "./Components/InputFields.jsx";
 import {Link, useNavigate} from 'react-router-dom'
+import config from "./config.js";
 
 const Signup = () => {
 
@@ -53,7 +54,7 @@ const Signup = () => {
             </div>)
             setIsBtnDisabled(true)
             try{
-                const response = await axios.post('https://meetzflow.com/account/endpoint/newSignUp', inputState, {withCredentials: true})
+                const response = await axios.post(`${config.backend_url}/account/endpoint/newSignUp`, inputState, {withCredentials: true})
                 dataStorage({
                     loggedIn: true,
                     name: inputState.name,

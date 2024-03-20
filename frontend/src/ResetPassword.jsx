@@ -5,6 +5,7 @@ import InputFields from './Components/InputFields';
 import validator from 'email-validator';
 
 import axios from 'axios'
+import config from './config';
 
 const ResetPassword = () => {
     
@@ -29,7 +30,7 @@ const ResetPassword = () => {
                     <span style={{marginLeft: '6px'}}>Loading...</span>
                 </div>)
                 setIsBtnDisabled(true)
-                const response = await axios.post('https://meetzflow.com/endpoint/account/forgot-password', { email: inputState.email })
+                const response = await axios.post(`${config.backend_url}/endpoint/account/forgot-password`, { email: inputState.email })
                 setSuccessMessage('Password Reset link is sent to your email!')
                 setBtn(<i className="bi bi-check-lg"></i>)
             } catch (error) {

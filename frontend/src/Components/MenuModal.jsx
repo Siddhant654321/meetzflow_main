@@ -8,6 +8,7 @@ import '../styles/customScroller.css';
 import AddMember from './AddMember';
 import AlertPopup from './AlertPopup';
 import {useNavigate} from 'react-router-dom';
+import config from "../config";
 
 const MenuModal = ({teamName, showMenu, setShowMenu, onlineMembers}) => {
     const handleClose = () => setShowMenu(false);
@@ -31,11 +32,11 @@ const MenuModal = ({teamName, showMenu, setShowMenu, onlineMembers}) => {
     const setMemberList = (listOfAdmin, listOfMember, isAdmin, onlineMembers) => {
         let adminList = listOfAdmin.map(admin => {
             const isOnline = onlineMembers.includes(admin.email)
-            return <ProfileInChat key={admin.email} isOnline={isOnline} isAdmin={isAdmin} setShowMenu={setShowMenu} teamName={teamName} admin={true} name={admin.name} email={admin.email} image={admin.avatar ? `https://meetzflow.com/avatars/${admin.email}/${admin.avatar}` : null} />
+            return <ProfileInChat key={admin.email} isOnline={isOnline} isAdmin={isAdmin} setShowMenu={setShowMenu} teamName={teamName} admin={true} name={admin.name} email={admin.email} image={admin.avatar ? `${config.backend_url}/avatars/${admin.email}/${admin.avatar}` : null} />
         })
         let memberList = listOfMember.map(member => {
             const isOnline = onlineMembers.includes(member.email)
-            return <ProfileInChat key={member.email} isOnline={isOnline} isAdmin={isAdmin} setShowMenu={setShowMenu} teamName={teamName} name={member.name} email={member.email} image={member.avatar ? `https://meetzflow.com/avatars/${member.email}/${member.avatar}` : null} />
+            return <ProfileInChat key={member.email} isOnline={isOnline} isAdmin={isAdmin} setShowMenu={setShowMenu} teamName={teamName} name={member.name} email={member.email} image={member.avatar ? `${config.backend_url}/avatars/${member.email}/${member.avatar}` : null} />
         })
         setMembers(<>
             {adminList}

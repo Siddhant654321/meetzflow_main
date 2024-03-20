@@ -3,6 +3,7 @@ import {useParams, useNavigate} from 'react-router-dom';
 import './styles/verifyEmail.css';
 import MySpinner from './Components/MySpinner.jsx';
 import axios from 'axios';
+import config from './config.js';
 
 const VerifyEmail = () => {
     const {code, email} = useParams();
@@ -18,7 +19,7 @@ const VerifyEmail = () => {
         const fetchData = async () => {
             try {
                 setRequestSent(true)
-                const {data} = await axios.get(`https://meetzflow.com/endpoint/verifyEmail/${code}/${email}`);
+                const {data} = await axios.get(`${config.backend_url}/endpoint/verifyEmail/${code}/${email}`);
                 if(data.hasOwnProperty('expired')){
                     setIsFetchingData(false)
                     setError(<h3>The link has expired. Click the button below to send a new link to the registered email</h3>)
@@ -52,7 +53,7 @@ const VerifyEmail = () => {
             setBtn(<div><span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
                 <span style={{marginLeft: '6px'}}>Loading...</span>
             </div>)
-            const response = await axios.post('https://meetzflow.com/endpoint/account/newVerificationCode', { email})    
+            const response = await axios.post(`${config.backend_url}/endpoint/account/newVerificationCode`, { email})    
             setBtn('Sent')
         } catch (error) {
             if(error.response.data.hasOwnProperty('error')){

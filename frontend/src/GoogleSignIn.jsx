@@ -3,6 +3,7 @@ import './styles/googleSignIn.css';
 import GoogleButton from 'react-google-button'
 import { useLocation, useNavigate } from 'react-router-dom';
 import useAxios from './CustomHooks/useAxios';
+import config from './config';
 
 const GoogleSignIn = () => { 
     const location = useLocation();
@@ -36,7 +37,7 @@ const GoogleSignIn = () => {
         <div className='signInGoogleDiv'>
             <p className='signInGoogleText'>{reauthentication ? 'You need to re-connect your Google Calendar to keep using our functionalities' : `Sign into your Google Calendar to access Meetzflow's awesome features`}</p>
             <GoogleButton
-                onClick={() => {window.open('https://meetzflow.com/auth/google')}}
+                onClick={() => {window.open(`${config.backend_url}/auth/google`)}}
                 style={{margin: 'auto'}}
             />
         </div>

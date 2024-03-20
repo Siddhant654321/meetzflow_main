@@ -1,9 +1,10 @@
 import axios from "axios";
+import config from "../config";
 
 
 const fetchUserData = async (userEmail) => {
     try {
-        const response = await (axios.get(`https://meetzflow.com/account/endpoint/${userEmail}`));
+        const response = await (axios.get(`${config.backend_url}/account/endpoint/${userEmail}`));
         let userDetails = {...response.data}
         if(userDetails.organization === null){
             delete userDetails.organization;
@@ -12,7 +13,7 @@ const fetchUserData = async (userEmail) => {
             delete userDetails.role;
         }
         if(userDetails.avatar !== null){
-            userDetails.avatar = `https://meetzflow.com/avatars/${userEmail}/${response.data.avatar}`
+            userDetails.avatar = `${config.backend_url}/avatars/${userEmail}/${response.data.avatar}`
         } else {
             delete userDetails.avatar
         }

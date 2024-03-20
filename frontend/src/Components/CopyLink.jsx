@@ -2,6 +2,7 @@ import {useState} from 'react';
 import {Link} from 'react-router-dom';
 import AlertPopup from './AlertPopup';
 import '../styles/copyLink.css'
+import config from '../config';
 
 const CopyLink = ({path}) => {
 
@@ -13,7 +14,7 @@ const CopyLink = ({path}) => {
         setBtn(<i className="bi bi-check-lg"></i>)
         setIsBtnDisabled(true)
         try {
-            await navigator.clipboard.writeText(`https://meetzflow.com${path}`)
+            await navigator.clipboard.writeText(`${config.backend_url}${path}`)
         } catch (error) {
             alert('Failed to copy link to clipboard')
         }
@@ -25,7 +26,7 @@ const CopyLink = ({path}) => {
     
     const clipboard = (
         <div className='copy-to-clipboard'>
-            <Link to={path}>{`https://meetzflow.com${path}`}</Link>
+            <Link to={path}>{`${config.backend_url}${path}`}</Link>
             <button onClick={handleClick} disabled={isBtnDisabled}>{btn}</button>
         </div>
     )

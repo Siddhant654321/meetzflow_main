@@ -4,7 +4,7 @@ const getOAuthClient = (tokenData) => {
 
     const CLIENT_ID = process.env.CLIENT_ID;
     const CLIENT_SECRET = process.env.CLIENT_SECRET;
-    const REDIRECT_URI = process.env.NODE_ENV === 'production' ? 'https://meetzflow.com/api/setup/callback' : 'http://localhost:3001/api/setup/callback';
+    const REDIRECT_URI = process.env.NODE_ENV === 'production' ? 'https://meetzflow.com/api/setup/callback' : 'http://localhost:5173/api/setup/callback';
   
     const oauth2Client = new google.auth.OAuth2(
       CLIENT_ID,

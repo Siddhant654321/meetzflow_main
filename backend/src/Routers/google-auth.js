@@ -6,7 +6,7 @@ const Router = express.Router();
 
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
-const REDIRECT_URI = process.env.NODE_ENV === 'production' ? 'https://meetzflow.com/api/setup/callback' : 'http://localhost:3000/api/setup/callback';
+const REDIRECT_URI = process.env.NODE_ENV === 'production' ? 'https://meetzflow.com/api/setup/callback' : 'http://localhost:5173/api/setup/callback';
 
 const oauth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
 
@@ -33,7 +33,7 @@ Router.get('/api/setup/callback', auth, async (req, res) => {
         }
         req.user.googleAuthorizationCode = {...tokens}
         await req.user.save();
-        res.redirect(process.env.NODE_ENV === 'production' ? 'http://meetzflow.com/app/setup/?success=success' : 'http://localhost:3001/app/setup/?success=success');
+        res.redirect(process.env.NODE_ENV === 'production' ? 'http://meetzflow.com/app/setup/?success=success' : 'http://localhost:5173/app/setup/?success=success');
     } catch(error) {
         res.status(500).send('Authentication failed');
     }

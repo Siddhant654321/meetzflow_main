@@ -38,7 +38,7 @@ app.use(contactRouter)
 app.use(AuthRouter)
 app.use(teamRouter)
 app.use(chatRouter)
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, 'dist')));
 
 app.get('/', (req, res) => {
     res.send('Welcome to MeetzFlow')

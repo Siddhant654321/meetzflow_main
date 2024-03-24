@@ -40,8 +40,8 @@ app.use(teamRouter)
 app.use(chatRouter)
 app.use(express.static(path.join(__dirname, 'dist')));
 
-app.get('/', (req, res) => {
-    res.send('Welcome to MeetzFlow')
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'))
 })
 
 let onlineUsers = []

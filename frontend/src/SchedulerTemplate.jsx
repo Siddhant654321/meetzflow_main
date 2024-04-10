@@ -16,7 +16,7 @@ import config from './config';
 const SchedulerTemplate = () => {
     const today = new Date()
     const [timeZones, setTimeZones] = useState(() => [])
-    const schedulerName = useParams().name;
+    const schedulerName = useParams().name.toLowerCase();
     const [templateVariables, setTemplateVariables] = useState(() => ({
         minDate: today,
         maxDate: null,

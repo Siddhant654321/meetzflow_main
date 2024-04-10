@@ -67,9 +67,9 @@ const MySchedulerForm = ({ buttonText, headline, update, oldDaysArray=['Monday',
             setIsBtnDisabled(true)
             try {
                 if(update){
-                    await axios.patch(`/schedule/endpoint/${inputState.schedulerName}`, {...inputState, daysArray: daysArray, timeAllowed: time}, {withCredentials: true})
+                    await axios.patch(`/schedule/endpoint/${inputState.schedulerName.toLowerCase()}`, {...inputState, daysArray: daysArray, timeAllowed: time}, {withCredentials: true})
                 } else {
-                    const response = await axios.post('/schedule/endpoint/new', {...inputState, daysArray: daysArray, timeAllowed: time}, {withCredentials: true})
+                    const response = await axios.post('/schedule/endpoint/new', {...inputState, schedulerName: inputState.schedulerName.toLowerCase(), daysArray: daysArray, timeAllowed: time}, {withCredentials: true})
                 }
                 setBtn(<>Scheduler Created <i className="bi bi-check-lg"></i></>)
                 setShowSuccess(true)
@@ -88,7 +88,7 @@ const MySchedulerForm = ({ buttonText, headline, update, oldDaysArray=['Monday',
 
     return (
         <div className='scheduler-form-bg'>
-        {showSuccess && <CopyLink path={`/schedule/${inputState.schedulerName}`} />}
+        {showSuccess && <CopyLink path={`/schedule/${inputState.schedulerName.toLowerCase()}`} />}
         <AlertPopup body={popupError} header='Error' showPopup={showPopupError} setShowPopup={setShowPopupError} />
             <form className='scheduler-form'>
                 <h2><b>{headline}</b></h2>

@@ -52,6 +52,7 @@ const ChatDashboard = () => {
     const [pageNumber, setPageNumber] = useState(() => 1)
     const [errors, setErrors] = useState(() => ({meetingTitleError: '', serverError: ''}))
     const [meetingSuccess, setMeetingSuccess] = useState(() => '')
+    const [dateArray, setDateArray] = useState(() => [])
 
     const fetchMessages = async (page, isShowMoreClicked = false) => {
         try{
@@ -59,27 +60,49 @@ const ChatDashboard = () => {
             const messages = await axios.get(`/chat/endpoint/messages/${name}?page=${page}`, {withCredentials: true});
             const teamData = await axios.get(`/team/endpoint/oneTeam/${teamName}`, {withCredentials: true})
             const oldMessages = []
-            let localVar = lastMessageDate;
+            let localVar = null;
             if(messages?.data.length < 20){
                 setMoreMessages(false)
             } else {
                 setMoreMessages(true)
             }
             messages?.data.reverse();
-            setLastMessageDate(formatDate(new Date(messages?.data[0]?.chat?.time)))
+            if(page === 1) {
+                setLastMessageDate(formatDate(new Date(messages?.data[0]?.chat?.time)))
+            }
+            let duplicateMessageArray = [...message]
             messages?.data.forEach(message => {
                 const chatTime = new Date(message.chat.time)
                 const formattedDate = formatDate(chatTime)
                 if(localVar !== formattedDate){
+                    let alreadyExists = false;
+                    dateArray.forEach((targettedDate) => {
+                        if(formattedDate === targettedDate){
+                            alreadyExists = true
+                            let indexOfDate = null;
+                            duplicateMessageArray.forEach((messageData, index) => {
+                                if(messageData.type.name === 'ChatDate' && messageData.props.date === formattedDate) {
+                                    indexOfDate = index
+                                }
+                            })
+                            if(indexOfDate !== null) {
+                                duplicateMessageArray.splice(indexOfDate, 1)
+                                setMessage([...duplicateMessageArray]);
+                            }
+                        }
+                    })
                     oldMessages.push(<ChatDate date={formattedDate} key={oldMessages.length} />)
                     localVar = formattedDate
+                    if(!alreadyExists){
+                        setDateArray(prev => [...prev, formattedDate])
+                    }
                 }
                 if(message.chat.hasOwnProperty('imageMessage')){
-                    return oldMessages.push(<ChatMessages key={oldMessages.length} senderName={message.chat.sentByName} senderTime={formatTime(chatTime)} sender={message.chat.sentByEmail === localStorage.getItem('email') ? 'me' : 'other'} image={`${config.backend_url}/chatImages/${teamData.data._id}/${message.chat.imageMessage}`} />)
+                    return oldMessages.push(<ChatMessages key={message.chat._id} senderName={message.chat.sentByName} senderTime={formatTime(chatTime)} sender={message.chat.sentByEmail === localStorage.getItem('email') ? 'me' : 'other'} image={`${config.backend_url}/chatImages/${teamData.data._id}/${message.chat.imageMessage}`} />)
                 } else if (message.chat.hasOwnProperty('meetingMessage')){
-                    return oldMessages.push(<p className='meeting-message' key={oldMessages.length}>{message.chat.sentByEmail === localStorage.getItem('email') ? 'You have ' + message.chat.meetingMessage : `${message.chat.sentByName } has ${message.chat.meetingMessage}`} - <a href={message.chat.meetingLink}>Meeting Link</a></p>)
+                    return oldMessages.push(<p className='meeting-message' key={message.chat._id}>{message.chat.sentByEmail === localStorage.getItem('email') ? 'You have ' + message.chat.meetingMessage : `${message.chat.sentByName } has ${message.chat.meetingMessage}`} - <a href={message.chat.meetingLink}>Meeting Link</a></p>)
                 }
-                return oldMessages.push(<ChatMessages key={oldMessages.length} senderName={message.chat.sentByName} senderTime={formatTime(chatTime)} sender={message.chat.sentByEmail === localStorage.getItem('email') ? 'me' : 'other'} message={message.chat.chatMessage} />)
+                return oldMessages.push(<ChatMessages key={message.chat._id} senderName={message.chat.sentByName} senderTime={formatTime(chatTime)} sender={message.chat.sentByEmail === localStorage.getItem('email') ? 'me' : 'other'} message={message.chat.chatMessage} />)
             })
             if (isShowMoreClicked) {
                 setScrollHeightBeforeNewMessages(scrollRef.current.scrollHeight);
@@ -89,7 +112,6 @@ const ChatDashboard = () => {
                 setMoreMessagesBtn('Show Previous Messages')
                 setMoreMessagesDisabled(false)
             }else {
-
                 setIsFetchingData(false)
             }
         } catch (error){
@@ -151,7 +173,6 @@ const ChatDashboard = () => {
             const chatTime = new Date();
             let newDate;
             const formattedDate = formatDate(chatTime)
-                console.log(lastMessageDate, formattedDate)
             if(lastMessageDate !== formattedDate){
                 newDate = <ChatDate date={formattedDate} />
                 setLastMessageDate(formattedDate)
@@ -261,7 +282,6 @@ const ChatDashboard = () => {
         const chatTime = new Date();
         let newDate;
         const formattedDate = formatDate(chatTime)
-        console.log('Send Message ', formattedDate, lastMessageDate)
         if(lastMessageDate !== formattedDate){
             newDate = <ChatDate date={formattedDate} />
             setLastMessageDate(formattedDate)

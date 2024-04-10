@@ -70,16 +70,16 @@ const ChatDashboard = () => {
                 const chatTime = new Date(message.chat.time)
                 const formattedDate = formatDate(chatTime)
                 if(localVar !== formattedDate){
-                    oldMessages.push(<ChatDate date={formattedDate} />)
+                    oldMessages.push(<ChatDate date={formattedDate} key={oldMessages.length} />)
                     setLastMessageDate(formattedDate)
                     localVar = formattedDate
                 }
                 if(message.chat.hasOwnProperty('imageMessage')){
-                    return oldMessages.push(<ChatMessages key={message.chat._id} senderName={message.chat.sentByName} senderTime={formatTime(chatTime)} sender={message.chat.sentByEmail === localStorage.getItem('email') ? 'me' : 'other'} image={`${config.backend_url}/chatImages/${teamData.data._id}/${message.chat.imageMessage}`} />)
+                    return oldMessages.push(<ChatMessages key={oldMessages.length} senderName={message.chat.sentByName} senderTime={formatTime(chatTime)} sender={message.chat.sentByEmail === localStorage.getItem('email') ? 'me' : 'other'} image={`${config.backend_url}/chatImages/${teamData.data._id}/${message.chat.imageMessage}`} />)
                 } else if (message.chat.hasOwnProperty('meetingMessage')){
-                    return oldMessages.push(<p className='meeting-message'>{message.chat.sentByEmail === localStorage.getItem('email') ? 'You have ' + message.chat.meetingMessage : `${message.chat.sentByName } has ${message.chat.meetingMessage}`} - <a href={message.chat.meetingLink}>Meeting Link</a></p>)
+                    return oldMessages.push(<p className='meeting-message' key={oldMessages.length}>{message.chat.sentByEmail === localStorage.getItem('email') ? 'You have ' + message.chat.meetingMessage : `${message.chat.sentByName } has ${message.chat.meetingMessage}`} - <a href={message.chat.meetingLink}>Meeting Link</a></p>)
                 }
-                return oldMessages.push(<ChatMessages key={message.chat._id} senderName={message.chat.sentByName} senderTime={formatTime(chatTime)} sender={message.chat.sentByEmail === localStorage.getItem('email') ? 'me' : 'other'} message={message.chat.chatMessage} />)
+                return oldMessages.push(<ChatMessages key={oldMessages.length} senderName={message.chat.sentByName} senderTime={formatTime(chatTime)} sender={message.chat.sentByEmail === localStorage.getItem('email') ? 'me' : 'other'} message={message.chat.chatMessage} />)
             })
             if (isShowMoreClicked) {
                 setScrollHeightBeforeNewMessages(scrollRef.current.scrollHeight);
@@ -138,9 +138,9 @@ const ChatDashboard = () => {
             if(lastMessageDate !== formattedDate){
                 newDate = <ChatDate date={formattedDate} />
                 setLastMessageDate(formattedDate)
-                setMessage(prev => [...prev, <> {newDate} <ChatMessages senderName={data.from} senderTime={formatTime(chatTime)} sender='other' image={data.image} /> </>]);
+                setMessage(prev => [...prev, <div key={message.length}> {newDate} <ChatMessages senderName={data.from} senderTime={formatTime(chatTime)} sender='other' image={data.image} /> </div>]);
             } else {
-                setMessage(prev => [...prev, <> <ChatMessages senderName={data.from} senderTime={formatTime(chatTime)} sender='other' image={data.image} /> </>]);
+                setMessage(prev => [...prev, <div key={message.length}> <ChatMessages senderName={data.from} senderTime={formatTime(chatTime)} sender='other' image={data.image} /> </div>]);
             }
             if(moreMessagesClicked){
                 setMoreMessagesClicked(false)
@@ -152,11 +152,12 @@ const ChatDashboard = () => {
             let newDate;
             const formattedDate = formatDate(chatTime)
             if(lastMessageDate !== formattedDate){
+                console.log(lastMessageDate, formattedDate)
                 newDate = <ChatDate date={formattedDate} />
                 setLastMessageDate(formattedDate)
-                setMessage(prev => [...prev, <> {newDate} <ChatMessages senderName={data.sender} senderTime={formatTime(chatTime)} sender='other' message={data.message} /> </>])
+                setMessage(prev => [...prev, <div key={message.length}> {newDate} <ChatMessages senderName={data.sender} senderTime={formatTime(chatTime)} sender='other' message={data.message} /> </div>])
             } else {
-                setMessage(prev => [...prev, <> <ChatMessages senderName={data.sender} senderTime={formatTime(chatTime)} sender='other' message={data.message} /> </>])
+                setMessage(prev => [...prev, <div key={message.length}> <ChatMessages senderName={data.sender} senderTime={formatTime(chatTime)} sender='other' message={data.message} /> </div>])
             }
             if(moreMessagesClicked){
                 setMoreMessagesClicked(false)
@@ -170,9 +171,9 @@ const ChatDashboard = () => {
             if(lastMessageDate !== formattedDate){
                 setLastMessageDate(formattedDate)
                 const newDate = <ChatDate date={formattedDate} />
-                setMessage(prev => [...prev, <> {newDate} <p className='meeting-message'>{`${data.from} has hosted a meeting for '${data.meetingTitle}' and it will commence on ${data.meetingTime}`} - <a href={data.meetingLink}>Meeting Link</a></p></>])
+                setMessage(prev => [...prev, <div key={message.length}> {newDate} <p className='meeting-message'>{`${data.from} has hosted a meeting for '${data.meetingTitle}' and it will commence on ${data.meetingTime}`} - <a href={data.meetingLink}>Meeting Link</a></p></div>])
             } else {
-                setMessage(prev => [...prev, <p className='meeting-message'>{`${data.from} has hosted a meeting for '${data.meetingTitle}' and it will commence on ${data.meetingTime}`} - <a href={data.meetingLink}>Meeting Link</a></p>])
+                setMessage(prev => [...prev, <p key={message.length} className='meeting-message'>{`${data.from} has hosted a meeting for '${data.meetingTitle}' and it will commence on ${data.meetingTime}`} - <a href={data.meetingLink}>Meeting Link</a></p>])
             }
             if(moreMessagesClicked){
                 setMoreMessagesClicked(false)
@@ -236,7 +237,7 @@ const ChatDashboard = () => {
                 if(moreMessagesClicked){
                     setMoreMessagesClicked(false)
                 }
-                setMessage(prev => [...prev, <> {newDate} <ChatMessages senderName={localStorage.getItem('name')} senderTime={formatTime(new Date())} sender='me' image={reader.result} /> </>])
+                setMessage(prev => [...prev, <div key={message.length}> {newDate} <ChatMessages senderName={localStorage.getItem('name')} senderTime={formatTime(new Date())} sender='me' image={reader.result} /> </div>])
             };
             reader.readAsDataURL(image);
         });
@@ -267,7 +268,7 @@ const ChatDashboard = () => {
         if(moreMessagesClicked){
             setMoreMessagesClicked(false)
         }
-        setMessage(prev => [...prev, <> {newDate} <ChatMessages senderName={localStorage.getItem('name')} senderTime={formatTime(chatTime)} sender='me' message={inputState} /> </>])
+        setMessage(prev => [...prev, <div key={message.length}> {newDate} <ChatMessages senderName={localStorage.getItem('name')} senderTime={formatTime(chatTime)} sender='me' message={inputState} /> </div>])
         setIsBtnDisabled(true)
         const message = inputState;
         setInputState('')
@@ -323,7 +324,7 @@ const ChatDashboard = () => {
                 setMoreMessagesClicked(false)
             }
             socketRef.current.emit('sendMeetingMessage', {meetingTime: response.data.meetingTime, meetingTitle: meetingData.meetingTitle, meetingLink: response.data.meetingLink});
-            setMessage(prev => [...prev, <p className='meeting-message'>{`You have hosted a meeting for '${meetingData.meetingTitle}' and it will commence on ${response.data.meetingTime}`} - <a href={response.data.meetingLink}>Meeting Link</a></p>])
+            setMessage(prev => [...prev, <p key={message.length} className='meeting-message'>{`You have hosted a meeting for '${meetingData.meetingTitle}' and it will commence on ${response.data.meetingTime}`} - <a href={response.data.meetingLink}>Meeting Link</a></p>])
             setMeetingSuccess(() => 'Meeting Successfully Scheduled!')
             setIsMeetingBtnDisabled(true)
             setMeetingBtn(<i className="bi bi-check-lg"></i>)

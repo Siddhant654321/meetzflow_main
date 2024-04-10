@@ -66,12 +66,12 @@ const ChatDashboard = () => {
                 setMoreMessages(true)
             }
             messages?.data.reverse();
+            setLastMessageDate(formatDate(new Date(messages?.data[0]?.chat?.time)))
             messages?.data.forEach(message => {
                 const chatTime = new Date(message.chat.time)
                 const formattedDate = formatDate(chatTime)
                 if(localVar !== formattedDate){
                     oldMessages.push(<ChatDate date={formattedDate} key={oldMessages.length} />)
-                    setLastMessageDate(formattedDate)
                     localVar = formattedDate
                 }
                 if(message.chat.hasOwnProperty('imageMessage')){
@@ -151,8 +151,8 @@ const ChatDashboard = () => {
             const chatTime = new Date();
             let newDate;
             const formattedDate = formatDate(chatTime)
-            if(lastMessageDate !== formattedDate){
                 console.log(lastMessageDate, formattedDate)
+            if(lastMessageDate !== formattedDate){
                 newDate = <ChatDate date={formattedDate} />
                 setLastMessageDate(formattedDate)
                 setMessage(prev => [...prev, <div key={message.length}> {newDate} <ChatMessages senderName={data.sender} senderTime={formatTime(chatTime)} sender='other' message={data.message} /> </div>])
@@ -193,7 +193,7 @@ const ChatDashboard = () => {
         return () => {
             socketRef.current.disconnect();
         };
-    }, [])
+    }, [lastMessageDate])
 
     const handleFileButtonClick = () => {
         document.getElementById('fileUpload').click();
@@ -261,6 +261,7 @@ const ChatDashboard = () => {
         const chatTime = new Date();
         let newDate;
         const formattedDate = formatDate(chatTime)
+        console.log('Send Message ', formattedDate, lastMessageDate)
         if(lastMessageDate !== formattedDate){
             newDate = <ChatDate date={formattedDate} />
             setLastMessageDate(formattedDate)

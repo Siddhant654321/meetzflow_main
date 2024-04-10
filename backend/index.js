@@ -15,6 +15,8 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
+import accountModel from './src/Models/accountModel.js';
+import teamModel from './src/Models/teamModel.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

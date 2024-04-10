@@ -16,11 +16,11 @@
     margin-top: 15px;
     background-color: #6f42c1;
     color: white;
-    width: 100%;
     border: 0px;
-    padding: 8px 12px;
+    padding: 8px 30px;
     transition: opacity 0.3s;
-    width: 100px;
+    width: fit-content;
+    max-width: 200px;
     margin: auto;
     border-radius: 4px;
 }

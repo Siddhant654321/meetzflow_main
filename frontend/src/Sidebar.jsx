@@ -7,6 +7,7 @@ import useAxios from './CustomHooks/useAxios';
 import {configureStore} from '@reduxjs/toolkit';
 import teamReducer from './reducers/teamReducer';
 import { Provider } from 'react-redux';
+import meetzflow_logo from './assets/meetzflow_logo.svg'
 
 const Sidebar = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(null);
@@ -60,7 +61,7 @@ const Sidebar = () => {
                 <div className={`l-navbar ${show ? 'show-sidebar' : ''}`} id="nav-bar">
                     <nav className={"nav"}>
                         <div> 
-                            <Link to="/app" className="nav_logo"> <i className='bi bi-2-square nav_logo-icon'></i> <span className="nav_logo-name">MeetzFlow</span> </Link>
+                            <Link to="/app" className="nav_logo"> <img src={meetzflow_logo} height={30} width={30} /> <span className="nav_logo-name">MeetzFlow</span> </Link>
                             <div className="nav_list"> 
                                 <SidebarItems name='Dashboard' end={true} icon='window' path='/app'/> 
                                 <SidebarItems name='Notifications' icon='bell-fill' path='/app/notifications'/> 

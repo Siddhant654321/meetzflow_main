@@ -1,42 +1,44 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 body {
   margin: 0;
   padding: 0 !important;
-  font-family: Roboto, sans-serif;
+  font-family: "Inter", sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   position: relative;
   overflow-x: hidden;
 }
 
-#root{ 
+#root {
   min-height: 100vh;
 }
 
-.legal-links{
+.legal-links {
   color: white;
   text-decoration: none;
 }
 
-.row{
+.row {
   max-width: calc(100vw - 68px) !important;
 }
 
-.footer-section{
+.footer-section {
   display: flex;
   text-align: left;
 }
 
-.copyright-text{
+.copyright-text {
   margin-bottom: 0px;
 }
 
 @media (max-width: 768px) {
-  .footer-section{
+  .footer-section {
     display: block;
     text-align: center;
   }
-  .copyright-text{
+
+  .copyright-text {
     margin-bottom: 10px;
   }
 }

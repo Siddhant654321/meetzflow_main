@@ -1,0 +1,31 @@
+.m-container {
+    min-height: 100vh;
+    background: linear-gradient(117deg, #000 0%, #031801 50%, #000 100%);
+    color: #D1D5DB;
+}
+
+.m-nav {
+    padding: 23px 125px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.m-nav-links {
+    list-style: none;
+    display: flex;
+    gap: 35px;
+    font-size: 20px;
+    text-transform: uppercase;
+    margin: 0px;
+    padding: 0px;
+}
+
+.m-get-started-btn {
+    background-color: #5CC981;
+    border-radius: 50px;
+    color: #031301;
+    padding: 12px 26px;
+    font-size: 20px;
+    border: none;
+}

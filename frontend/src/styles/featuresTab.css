@@ -1,0 +1,63 @@
+.m-features-main-div {
+    padding: 15px;
+}
+
+.m-features-card {
+    padding: 2px;
+    z-index: 0;
+    overflow: hidden;
+    border-radius: 24px;
+    position: relative;
+}
+
+.m-features-first-div {
+    border-radius: 24px;
+    background: rgba(0, 0, 0, 0.22);
+    display: flex;
+    gap: 22px;
+    flex-direction: column;
+    padding: 24px;
+    backdrop-filter: blur(80px);
+    height: 100%;
+}
+
+.blob,
+.fakeblob {
+    border-radius: 50%;
+    position: absolute;
+    background-color: #5CC981;
+    opacity: 33%;
+}
+
+.blob {
+    width: 250px;
+    height: 80%;
+    left: calc(15% - 125px);
+    filter: blur(40px);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 300ms 300ms linear;
+}
+
+.fakeblob {
+    visibility: hidden;
+    z-index: -1;
+    height: 100%;
+}
+
+.m-feature-heading,
+.m-feature-description {
+    color: #D1D5DB;
+    margin: 0px;
+}
+
+.m-feature-heading {
+    font-size: 24px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.m-feature-description {
+    font-size: 18px;
+    line-height: 34px;
+}

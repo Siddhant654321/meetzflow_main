@@ -6,11 +6,20 @@
 }
 
 .m-hero-section>h1 {
-    text-align: center;
     font-size: 69px;
+    background: radial-gradient(70.71% 70.71% at 50% 50%, #F3F4F6 0%, #9CA3AF 90.1%);
+}
+
+.m-secondary-heading {
+    font-size: 50px;
+    background: linear-gradient(0deg, #E0F2FE 0%, #9CA3AF 100%);
+}
+
+.m-hero-section>h1,
+.m-secondary-heading {
+    text-align: center;
     text-transform: uppercase;
     font-weight: 500;
-    background: radial-gradient(70.71% 70.71% at 50% 50%, #F3F4F6 0%, #9CA3AF 90.1%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -34,5 +43,12 @@
 }
 
 .m-hero-section-img {
-    margin-top: 28px;
+    margin: 28px 0px;
+}
+
+.m-features-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 0px 35px;
 }

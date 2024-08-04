@@ -1,13 +1,18 @@
 import "./styles/homepage.css";
 import right_arrow from "./assets/right-arrow.svg";
 import hero_section_img from "./assets/hero_section_img.png";
+import FeaturesTab from "./Components/FeaturesTab";
+import TestimonialsTab from "./Components/TestimonialsTab";
 
 import handshake_icon from "./assets/handshake_icon.svg";
 import team_icon_1 from "./assets/team_icon_1.svg";
 import team_icon_2 from "./assets/team_icon_2.svg";
 import dashboard_icon from "./assets/dashboard_icon.svg";
 import coin_icon from "./assets/coin_icon.svg";
-import FeaturesTab from "./Components/FeaturesTab";
+import aditya_singh from "./assets/aditya_singh.jpg";
+import alina_reed from "./assets/alina_reed.jpg";
+import andrew_williams from "./assets/andrew_williams.jpg";
+import quotes_icon from "./assets/quotes_icon.svg";
 
 const Homepage = () => {
   const features = [
@@ -46,6 +51,24 @@ const Homepage = () => {
       style: { width: "50%" },
     },
   ];
+
+  const testimonials = [
+    {
+      name: "Aditya Singh",
+      designation: "WEB DEVELOPER",
+      img: aditya_singh,
+    },
+    {
+      name: "Alina Reed",
+      designation: "SALES EXECUTIVE",
+      img: alina_reed,
+    },
+    {
+      name: "Andrew Williams",
+      designation: "MANAGER",
+      img: andrew_williams,
+    },
+  ];
   return (
     <div>
       <div className="m-hero-section">
@@ -68,6 +91,40 @@ const Homepage = () => {
           {features.map((feature_data) => (
             <FeaturesTab {...feature_data} />
           ))}
+        </div>
+      </div>
+      <div className="m-testimonials-section">
+        <h2 className="m-secondary-heading">WHAT OUR USERS SAY</h2>
+        <h3 className="m-subheading">
+          HEAR ABOUT US FROM OUR AWESOME CUSTOMERS
+        </h3>
+        <div className="m-testimonials-container">
+          <div className="m-testimonials-overlay"></div>
+          {testimonials.map((testimonial) => (
+            <TestimonialsTab {...testimonial} />
+          ))}
+        </div>
+        <div className="m-testimonials-upper-divider"></div>
+        <div className="m-testimonials-bottom-card">
+          <div>
+            <div className="m-testimonials-extra-details">
+              <h4>ONBOARDED SINCE:</h4>
+              <h5>21st Aug, 2023</h5>
+            </div>
+            <div className="m-testimonials-extra-details" style={{ margin: 0 }}>
+              <h4>FAVORITE FEATURE:</h4>
+              <h5>Multiple Teams</h5>
+            </div>
+          </div>
+          <div className="m-testimonials-middle-divider"></div>
+          <div className="m-testimonials-right-section">
+            <img src={quotes_icon} alt='"' />
+            <p>
+              Having <span className="m-white-text">multiple teams</span> for
+              different departments and projects made things{" "}
+              <span className="m-white-text">incredibly easy</span>
+            </p>
+          </div>
         </div>
       </div>
     </div>

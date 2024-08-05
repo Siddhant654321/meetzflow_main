@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import "./styles/navbar.css";
 import nav_logo from "./assets/nav_logo.svg";
+import Footer from "./Footer";
 
 const Navbar = () => {
   return (
@@ -16,6 +17,7 @@ const Navbar = () => {
         <button className="m-get-started-btn">GET STARTED </button>
       </nav>
       <Outlet />
+      <Footer />
     </main>
   );
 };

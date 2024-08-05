@@ -1,0 +1,20 @@
+.m-footer-section {
+    display: flex;
+    padding: 15px 65px;
+    gap: 50px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.m-footer-right-div {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.m-footer-right-div>p {
+    margin: 0px;
+    color: #D1D5DB;
+    font-size: 20px;
+    text-transform: uppercase;
+}

@@ -4,11 +4,19 @@
     color: #D1D5DB;
 }
 
+.m-container a {
+    text-decoration: none;
+}
+
 .m-nav {
     padding: 23px 125px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.m-nav>img {
+    cursor: pointer;
 }
 
 .m-nav-links {
@@ -19,6 +27,16 @@
     text-transform: uppercase;
     margin: 0px;
     padding: 0px;
+}
+
+.m-nav-links>li>a {
+    color: #FFF !important;
+    transition: color 0.3s;
+    cursor: pointer;
+}
+
+.m-nav-links>li>a:hover {
+    color: #5CC981 !important;
 }
 
 .m-get-started-btn {

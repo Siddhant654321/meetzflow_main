@@ -12,9 +12,18 @@
     gap: 30px;
 }
 
-.m-footer-right-div>p {
+.m-footer-right-div>a {
     margin: 0px;
     color: #D1D5DB;
     font-size: 20px;
     text-transform: uppercase;
+}
+
+.m-footer-right-div>a {
+    transition: color 0.3s;
+    cursor: pointer;
+}
+
+.m-footer-right-div>a:hover {
+    color: #5CC981;
 }

@@ -13,6 +13,7 @@ import aditya_singh from "./assets/aditya_singh.jpg";
 import alina_reed from "./assets/alina_reed.jpg";
 import andrew_williams from "./assets/andrew_williams.jpg";
 import quotes_icon from "./assets/quotes_icon.svg";
+import { Link } from "react-router-dom";
 
 const Homepage = () => {
   const features = [
@@ -79,13 +80,15 @@ const Homepage = () => {
         <h3 className="m-subheading">
           With your Clients and Team members in a single dashboard
         </h3>
-        <button className="m-get-started-btn m-with-icon-btn">
-          START FOR FREE
-          <img src={right_arrow} alt="" />
-        </button>
+        <Link to="/get-started">
+          <button className="m-get-started-btn m-with-icon-btn">
+            START FOR FREE
+            <img src={right_arrow} alt="" />
+          </button>
+        </Link>
         <img src={hero_section_img} alt="" className="m-hero-section-img" />
       </div>
-      <div className="m-features-section">
+      <div className="m-features-section" id="features">
         <h2 className="m-secondary-heading">NEEDS MEET REALITY</h2>
         <h3 className="m-subheading">
           We bring you the features no one else provides
@@ -96,7 +99,7 @@ const Homepage = () => {
           ))}
         </div>
       </div>
-      <div className="m-testimonials-section">
+      <div className="m-testimonials-section" id="testimonials">
         <h2 className="m-secondary-heading">WHAT OUR USERS SAY</h2>
         <h3 className="m-subheading">
           HEAR ABOUT US FROM OUR AWESOME CUSTOMERS
@@ -138,10 +141,12 @@ const Homepage = () => {
           Create a forever free account today and meet with your clients and
           colleagues endlessly
         </h3>
-        <button className="m-get-started-btn m-with-icon-btn">
-          START FOR FREE
-          <img src={right_arrow} alt="" />
-        </button>
+        <Link to="/get-started">
+          <button className="m-get-started-btn m-with-icon-btn">
+            START FOR FREE
+            <img src={right_arrow} alt="" />
+          </button>
+        </Link>
       </div>
     </div>
   );

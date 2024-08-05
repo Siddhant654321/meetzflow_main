@@ -5,7 +5,7 @@
     align-items: center;
 }
 
-.m-hero-section>h1 {
+.m-hero-section h1 {
     font-size: 69px;
     background: radial-gradient(70.71% 70.71% at 50% 50%, #F3F4F6 0%, #9CA3AF 90.1%);
 }
@@ -15,7 +15,7 @@
     background: linear-gradient(0deg, #E0F2FE 0%, #9CA3AF 100%);
 }
 
-.m-hero-section>h1,
+.m-hero-section h1,
 .m-secondary-heading {
     text-align: center;
     text-transform: uppercase;

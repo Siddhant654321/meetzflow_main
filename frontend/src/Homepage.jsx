@@ -14,6 +14,7 @@ import alina_reed from "./assets/alina_reed.jpg";
 import andrew_williams from "./assets/andrew_williams.jpg";
 import quotes_icon from "./assets/quotes_icon.svg";
 import { Link } from "react-router-dom";
+import AnimationWrapper from "./Components/AnimationWrapper";
 
 const Homepage = () => {
   const features = [
@@ -76,17 +77,25 @@ const Homepage = () => {
   return (
     <div>
       <div className="m-hero-section">
-        <h1>Connect Seamlessly</h1>
-        <h3 className="m-subheading">
-          With your Clients and Team members in a single dashboard
-        </h3>
-        <Link to="/get-started">
-          <button className="m-get-started-btn m-with-icon-btn">
-            START FOR FREE
-            <img src={right_arrow} alt="" />
-          </button>
-        </Link>
-        <img src={hero_section_img} alt="" className="m-hero-section-img" />
+        <AnimationWrapper>
+          <h1>Connect Seamlessly</h1>
+        </AnimationWrapper>
+        <AnimationWrapper delay={0.4}>
+          <h3 className="m-subheading">
+            With your Clients and Team members in a single dashboard
+          </h3>
+        </AnimationWrapper>
+        <AnimationWrapper delay={0.4}>
+          <Link to="/get-started">
+            <button className="m-get-started-btn m-with-icon-btn">
+              START FOR FREE
+              <img src={right_arrow} alt="" />
+            </button>
+          </Link>
+        </AnimationWrapper>
+        <AnimationWrapper delay={0.8}>
+          <img src={hero_section_img} alt="" className="m-hero-section-img" />
+        </AnimationWrapper>
       </div>
       <div className="m-features-section" id="features">
         <h2 className="m-secondary-heading">NEEDS MEET REALITY</h2>

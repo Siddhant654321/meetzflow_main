@@ -57,16 +57,19 @@ const Homepage = () => {
       name: "Aditya Singh",
       designation: "WEB DEVELOPER",
       img: aditya_singh,
+      order: 1,
     },
     {
       name: "Alina Reed",
       designation: "SALES EXECUTIVE",
       img: alina_reed,
+      order: 2,
     },
     {
       name: "Andrew Williams",
       designation: "MANAGER",
       img: andrew_williams,
+      order: 3,
     },
   ];
   return (
@@ -99,7 +102,6 @@ const Homepage = () => {
           HEAR ABOUT US FROM OUR AWESOME CUSTOMERS
         </h3>
         <div className="m-testimonials-container">
-          <div className="m-testimonials-overlay"></div>
           {testimonials.map((testimonial) => (
             <TestimonialsTab {...testimonial} />
           ))}
@@ -126,6 +128,20 @@ const Homepage = () => {
             </p>
           </div>
         </div>
+      </div>
+      <div className="m-final-cta-section">
+        <h2 className="m-secondary-heading">
+          COLLABORATE<span className="m-bigger-font">.</span> TOGETHER
+          <span className="m-bigger-font">.</span>
+        </h2>
+        <h3 className="m-subheading">
+          Create a forever free account today and meet with your clients and
+          colleagues endlessly
+        </h3>
+        <button className="m-get-started-btn m-with-icon-btn">
+          START FOR FREE
+          <img src={right_arrow} alt="" />
+        </button>
       </div>
     </div>
   );

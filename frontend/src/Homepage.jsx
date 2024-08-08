@@ -24,6 +24,7 @@ const Homepage = () => {
       description:
         "Our tool lets you create a new scheduler that you can share with your prospects and schedule meetings with them only on days and times when you are available.",
       style: { width: "33%" },
+      delay: 0,
     },
     {
       icon: team_icon_1,
@@ -31,6 +32,7 @@ const Homepage = () => {
       description:
         "Create a team where you can discuss your next project. Add and remove admins and members, and schedule meetings with all your colleagues in just one place.",
       style: { width: "33%" },
+      delay: 0.2,
     },
     {
       icon: team_icon_2,
@@ -38,6 +40,7 @@ const Homepage = () => {
       description:
         "Need different teams for each department or unique spaces to relax with colleagues? We've got you covered. Create as many teams as you need.",
       style: { width: "33%" },
+      delay: 0.4,
     },
     {
       icon: dashboard_icon,
@@ -45,12 +48,14 @@ const Homepage = () => {
       description:
         "You will find your upcoming and past meetings, your teams, your notifications and your schedulers all in one place, totally organized for you to give you a boost of productivity.",
       style: { width: "50%" },
+      delay: 0,
     },
     {
       icon: coin_icon,
       title: "Absolutely free",
       description: `Unlike other collaboration and client management tools, we will never charge you for using our services. We are committed to our ideal of 'No Limits, No Pricing.'`,
       style: { width: "50%" },
+      delay: 0.2,
     },
   ];
 
@@ -74,6 +79,7 @@ const Homepage = () => {
       order: 3,
     },
   ];
+
   return (
     <div>
       <div className="m-hero-section">
@@ -98,13 +104,24 @@ const Homepage = () => {
         </AnimationWrapper>
       </div>
       <div className="m-features-section" id="features">
-        <h2 className="m-secondary-heading">NEEDS MEET REALITY</h2>
-        <h3 className="m-subheading">
-          We bring you the features no one else provides
-        </h3>
+        <AnimationWrapper>
+          <h2 className="m-secondary-heading">NEEDS MEET REALITY</h2>
+        </AnimationWrapper>
+        <AnimationWrapper delay={0.4}>
+          <h3 className="m-subheading">
+            We bring you the features no one else provides
+          </h3>
+        </AnimationWrapper>
         <div className="m-features-container">
-          {features.map((feature_data) => (
-            <FeaturesTab {...feature_data} />
+          {features.map((feature_data, index) => (
+            <AnimationWrapper
+              className="m-features-main-div"
+              style={feature_data.style}
+              key={feature_data.title + index}
+              delay={0.4 + feature_data.delay}
+            >
+              <FeaturesTab {...feature_data} />
+            </AnimationWrapper>
           ))}
         </div>
       </div>

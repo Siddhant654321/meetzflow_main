@@ -6,12 +6,6 @@ body {
   font-family: "Inter", sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  position: relative;
-  overflow-x: hidden;
-}
-
-#root {
-  min-height: 100vh;
 }
 
 .legal-links {
@@ -30,15 +24,4 @@ body {
 
 .copyright-text {
   margin-bottom: 0px;
-}
-
-@media (max-width: 768px) {
-  .footer-section {
-    display: block;
-    text-align: center;
-  }
-
-  .copyright-text {
-    margin-bottom: 10px;
-  }
 }

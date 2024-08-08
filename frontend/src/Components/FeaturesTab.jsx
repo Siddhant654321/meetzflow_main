@@ -64,16 +64,14 @@ const FeaturesTab = ({ icon, title, description, style }) => {
   }, [handleMouseMove, handleScroll]);
 
   return (
-    <div className="m-features-main-div" style={style}>
-      <div className="m-features-card" ref={cardRef}>
-        <div className="m-features-first-div">
-          <img src={icon} alt={title} width={86} height={86} />
-          <h3 className="m-feature-heading">{title}</h3>
-          <p className="m-feature-description">{description}</p>
-        </div>
-        <div className="blob" ref={blobRef}></div>
-        <div className="fakeblob" ref={fakeBlobRef}></div>
+    <div className="m-features-card" ref={cardRef}>
+      <div className="m-features-first-div">
+        <img src={icon} alt={title} width={86} height={86} />
+        <h3 className="m-feature-heading">{title}</h3>
+        <p className="m-feature-description">{description}</p>
       </div>
+      <div className="blob" ref={blobRef}></div>
+      <div className="fakeblob" ref={fakeBlobRef}></div>
     </div>
   );
 };

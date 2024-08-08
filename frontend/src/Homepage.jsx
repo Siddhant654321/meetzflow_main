@@ -126,39 +126,49 @@ const Homepage = () => {
         </div>
       </div>
       <div className="m-testimonials-section" id="testimonials">
-        <h2 className="m-secondary-heading">WHAT OUR USERS SAY</h2>
-        <h3 className="m-subheading">
-          HEAR ABOUT US FROM OUR AWESOME CUSTOMERS
-        </h3>
-        <div className="m-testimonials-container">
+        <AnimationWrapper>
+          <h2 className="m-secondary-heading">WHAT OUR USERS SAY</h2>
+        </AnimationWrapper>
+        <AnimationWrapper>
+          <h3 className="m-subheading">
+            HEAR ABOUT US FROM OUR AWESOME CUSTOMERS
+          </h3>
+        </AnimationWrapper>
+        <AnimationWrapper className="m-testimonials-container">
           {testimonials.map((testimonial) => (
             <TestimonialsTab {...testimonial} />
           ))}
-        </div>
-        <div className="m-testimonials-upper-divider"></div>
-        <div className="m-testimonials-bottom-card">
-          <div>
-            <div className="m-testimonials-extra-details">
-              <h4>ONBOARDED SINCE:</h4>
-              <h5>21st Aug, 2023</h5>
-            </div>
-            <div className="m-testimonials-extra-details" style={{ margin: 0 }}>
-              <h4>FAVORITE FEATURE:</h4>
-              <h5>Multiple Teams</h5>
-            </div>
+        </AnimationWrapper>
+
+        <AnimationWrapper>
+          <div className="m-testimonials-upper-divider"></div>
+          <div className="m-testimonials-bottom-card">
+            <AnimationWrapper>
+              <div className="m-testimonials-extra-details">
+                <h4>ONBOARDED SINCE:</h4>
+                <h5>21st Aug, 2023</h5>
+              </div>
+              <div
+                className="m-testimonials-extra-details"
+                style={{ margin: 0 }}
+              >
+                <h4>FAVORITE FEATURE:</h4>
+                <h5>Multiple Teams</h5>
+              </div>
+            </AnimationWrapper>
+            <AnimationWrapper className="m-testimonials-middle-divider"></AnimationWrapper>
+            <AnimationWrapper className="m-testimonials-right-section">
+              <img src={quotes_icon} alt='"' />
+              <p>
+                Having <span className="m-white-text">multiple teams</span> for
+                different departments and projects made things{" "}
+                <span className="m-white-text">incredibly easy</span>
+              </p>
+            </AnimationWrapper>
           </div>
-          <div className="m-testimonials-middle-divider"></div>
-          <div className="m-testimonials-right-section">
-            <img src={quotes_icon} alt='"' />
-            <p>
-              Having <span className="m-white-text">multiple teams</span> for
-              different departments and projects made things{" "}
-              <span className="m-white-text">incredibly easy</span>
-            </p>
-          </div>
-        </div>
+        </AnimationWrapper>
       </div>
-      <div className="m-final-cta-section">
+      <AnimationWrapper className="m-final-cta-section">
         <h2 className="m-secondary-heading">
           COLLABORATE<span className="m-bigger-font">.</span> TOGETHER
           <span className="m-bigger-font">.</span>
@@ -173,7 +183,7 @@ const Homepage = () => {
             <img src={right_arrow} alt="" />
           </button>
         </Link>
-      </div>
+      </AnimationWrapper>
     </div>
   );
 };

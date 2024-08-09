@@ -3,6 +3,7 @@ import { HashLink } from "react-router-hash-link";
 import "./styles/navbar.css";
 import nav_logo from "./assets/nav_logo.svg";
 import Footer from "./Footer";
+import FlipLink from "./Components/FlipLink";
 
 const Navbar = () => {
   return (
@@ -29,9 +30,7 @@ const Navbar = () => {
             <Link to="/contact">Contact</Link>
           </li>
         </ul>
-        <Link to="/get-started">
-          <button className="m-get-started-btn">GET STARTED</button>
-        </Link>
+        <FlipLink className="m-get-started-btn" buttonText="START FOR FREE" />
       </nav>
       <Outlet />
       <Footer />

@@ -25,3 +25,35 @@ body {
 .copyright-text {
   margin-bottom: 0px;
 }
+
+.m-fliplink {
+  position: relative;
+  display: block;
+  white-space: nowrap;
+}
+
+.m-get-started-btn {
+  background-color: #5CC981;
+  border-radius: 50px;
+  color: #031301;
+  padding: 18px 26px;
+  font-size: 20px;
+  border: none;
+  font-weight: 500;
+}
+
+.m-get-started-btn:hover {
+  opacity: 0.9;
+}
+
+.m-get-started-btn:active {
+  opacity: 0.75;
+}
+
+.m-with-icon-btn {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  line-height: 0px;
+  padding: 17px 26px;
+}

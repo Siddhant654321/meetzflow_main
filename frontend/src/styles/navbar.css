@@ -37,12 +37,3 @@
 .m-nav-links>li>a:hover {
     color: #5CC981 !important;
 }
-
-.m-get-started-btn {
-    background-color: #5CC981;
-    border-radius: 50px;
-    color: #031301;
-    padding: 12px 26px;
-    font-size: 20px;
-    border: none;
-}

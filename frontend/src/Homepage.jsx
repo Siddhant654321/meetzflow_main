@@ -1,5 +1,4 @@
 import "./styles/homepage.css";
-import right_arrow from "./assets/right-arrow.svg";
 import hero_section_img from "./assets/hero_section_img.png";
 import FeaturesTab from "./Components/FeaturesTab";
 import TestimonialsTab from "./Components/TestimonialsTab";
@@ -15,6 +14,7 @@ import andrew_williams from "./assets/andrew_williams.jpg";
 import quotes_icon from "./assets/quotes_icon.svg";
 import { Link } from "react-router-dom";
 import AnimationWrapper from "./Components/AnimationWrapper";
+import FlipLink from "./Components/FlipLink";
 
 const Homepage = () => {
   const features = [
@@ -92,12 +92,10 @@ const Homepage = () => {
           </h3>
         </AnimationWrapper>
         <AnimationWrapper delay={0.4}>
-          <Link to="/get-started">
-            <button className="m-get-started-btn m-with-icon-btn">
-              START FOR FREE
-              <img src={right_arrow} alt="" />
-            </button>
-          </Link>
+          <FlipLink
+            className="m-get-started-btn m-with-icon-btn"
+            buttonText="START FOR FREE"
+          />
         </AnimationWrapper>
         <AnimationWrapper delay={0.8}>
           <img src={hero_section_img} alt="" className="m-hero-section-img" />
@@ -177,12 +175,10 @@ const Homepage = () => {
           Create a forever free account today and meet with your clients and
           colleagues endlessly
         </h3>
-        <Link to="/get-started">
-          <button className="m-get-started-btn m-with-icon-btn">
-            START FOR FREE
-            <img src={right_arrow} alt="" />
-          </button>
-        </Link>
+        <FlipLink
+          className="m-get-started-btn m-with-icon-btn"
+          buttonText="START FOR FREE"
+        />
       </AnimationWrapper>
     </div>
   );

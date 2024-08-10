@@ -1,20 +1,17 @@
 import "./styles/homepage.css";
 import hero_section_img from "./assets/hero_section_img.png";
 import FeaturesTab from "./Components/FeaturesTab";
-import TestimonialsTab from "./Components/TestimonialsTab";
 
 import handshake_icon from "./assets/handshake_icon.svg";
 import team_icon_1 from "./assets/team_icon_1.svg";
 import team_icon_2 from "./assets/team_icon_2.svg";
 import dashboard_icon from "./assets/dashboard_icon.svg";
 import coin_icon from "./assets/coin_icon.svg";
-import aditya_singh from "./assets/aditya_singh.jpg";
-import alina_reed from "./assets/alina_reed.jpg";
-import andrew_williams from "./assets/andrew_williams.jpg";
 import quotes_icon from "./assets/quotes_icon.svg";
-import { Link } from "react-router-dom";
 import AnimationWrapper from "./Components/AnimationWrapper";
 import FlipLink from "./Components/FlipLink";
+import TestimonialCarousel from "./Components/TestimonialCarousel";
+import { useState } from "react";
 
 const Homepage = () => {
   const features = [
@@ -59,26 +56,11 @@ const Homepage = () => {
     },
   ];
 
-  const testimonials = [
-    {
-      name: "Aditya Singh",
-      designation: "WEB DEVELOPER",
-      img: aditya_singh,
-      order: 1,
-    },
-    {
-      name: "Alina Reed",
-      designation: "SALES EXECUTIVE",
-      img: alina_reed,
-      order: 2,
-    },
-    {
-      name: "Andrew Williams",
-      designation: "MANAGER",
-      img: andrew_williams,
-      order: 3,
-    },
-  ];
+  const [activeTestimonial, setActiveTestimonial] = useState({
+    favorite_feature: "",
+    onboarded_since: "",
+    testimonial: [""],
+  });
 
   return (
     <div>
@@ -132,35 +114,36 @@ const Homepage = () => {
             HEAR ABOUT US FROM OUR AWESOME CUSTOMERS
           </h3>
         </AnimationWrapper>
-        <AnimationWrapper className="m-testimonials-container">
-          {testimonials.map((testimonial) => (
-            <TestimonialsTab {...testimonial} />
-          ))}
-        </AnimationWrapper>
+        <TestimonialCarousel
+          activeTestimonial={activeTestimonial}
+          setActiveTestimonial={setActiveTestimonial}
+        />
 
         <AnimationWrapper>
           <div className="m-testimonials-upper-divider"></div>
           <div className="m-testimonials-bottom-card">
-            <AnimationWrapper>
+            <AnimationWrapper style={{ width: "34%" }}>
               <div className="m-testimonials-extra-details">
                 <h4>ONBOARDED SINCE:</h4>
-                <h5>21st Aug, 2023</h5>
+                <h5>{activeTestimonial.onboarded_since}</h5>
               </div>
               <div
                 className="m-testimonials-extra-details"
                 style={{ margin: 0 }}
               >
                 <h4>FAVORITE FEATURE:</h4>
-                <h5>Multiple Teams</h5>
+                <h5>{activeTestimonial.favorite_feature}</h5>
               </div>
             </AnimationWrapper>
             <AnimationWrapper className="m-testimonials-middle-divider"></AnimationWrapper>
             <AnimationWrapper className="m-testimonials-right-section">
               <img src={quotes_icon} alt='"' />
               <p>
-                Having <span className="m-white-text">multiple teams</span> for
-                different departments and projects made things{" "}
-                <span className="m-white-text">incredibly easy</span>
+                {activeTestimonial.testimonial.map((text, index) => (
+                  <span className={index % 2 !== 0 && "m-white-text"}>
+                    {text}{" "}
+                  </span>
+                ))}
               </p>
             </AnimationWrapper>
           </div>

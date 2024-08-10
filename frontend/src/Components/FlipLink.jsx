@@ -22,7 +22,6 @@ const FlipLink = ({ buttonText, className, href }) => {
           style={{
             display: "block",
             overflow: "hidden",
-            whiteSpace: "nowrap",
             lineHeight: 0.75,
             position: "relative",
             whiteSpace: "pre",

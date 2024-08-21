@@ -12,6 +12,7 @@ import AnimationWrapper from "./Components/AnimationWrapper";
 import FlipLink from "./Components/FlipLink";
 import TestimonialCarousel from "./Components/TestimonialCarousel";
 import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Homepage = () => {
   const features = [
@@ -61,6 +62,11 @@ const Homepage = () => {
     onboarded_since: "",
     testimonial: [""],
   });
+
+  const fadeVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+  };
 
   return (
     <div>
@@ -118,34 +124,56 @@ const Homepage = () => {
           activeTestimonial={activeTestimonial}
           setActiveTestimonial={setActiveTestimonial}
         />
-
         <AnimationWrapper>
           <div className="m-testimonials-upper-divider"></div>
           <div className="m-testimonials-bottom-card">
-            <AnimationWrapper style={{ width: "34%" }}>
-              <div className="m-testimonials-extra-details">
-                <h4>ONBOARDED SINCE:</h4>
-                <h5>{activeTestimonial.onboarded_since}</h5>
-              </div>
-              <div
-                className="m-testimonials-extra-details"
-                style={{ margin: 0 }}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTestimonial.onboarded_since}
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+                variants={fadeVariants}
+                transition={{ duration: 0.3 }}
+                style={{ width: "34%" }}
               >
-                <h4>FAVORITE FEATURE:</h4>
-                <h5>{activeTestimonial.favorite_feature}</h5>
-              </div>
-            </AnimationWrapper>
+                <div className="m-testimonials-extra-details">
+                  <h4>ONBOARDED SINCE:</h4>
+                  <h5>{activeTestimonial.onboarded_since}</h5>
+                </div>
+                <div
+                  className="m-testimonials-extra-details"
+                  style={{ margin: 0 }}
+                >
+                  <h4>FAVORITE FEATURE:</h4>
+                  <h5>{activeTestimonial.favorite_feature}</h5>
+                </div>
+              </motion.div>
+            </AnimatePresence>
             <AnimationWrapper className="m-testimonials-middle-divider"></AnimationWrapper>
-            <AnimationWrapper className="m-testimonials-right-section">
-              <img src={quotes_icon} alt='"' />
-              <p>
-                {activeTestimonial.testimonial.map((text, index) => (
-                  <span className={index % 2 !== 0 && "m-white-text"}>
-                    {text}{" "}
-                  </span>
-                ))}
-              </p>
-            </AnimationWrapper>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTestimonial.testimonial.join("")}
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+                variants={fadeVariants}
+                transition={{ duration: 0.3 }}
+                className="m-testimonials-right-section"
+              >
+                <img src={quotes_icon} alt='"' />
+                <p style={{ lineHeight: "165%" }}>
+                  {activeTestimonial.testimonial.map((text, index) => (
+                    <span
+                      key={index}
+                      className={index % 2 !== 0 ? "m-white-text" : ""}
+                    >
+                      {text}{" "}
+                    </span>
+                  ))}
+                </p>
+              </motion.div>
+            </AnimatePresence>
           </div>
         </AnimationWrapper>
       </div>

@@ -120,7 +120,7 @@
     line-height: 28px;
     text-transform: uppercase;
     width: 500px;
-    margin: 60px 0px 0px 0px;
+    margin: 55px 0px 0px 0px;
     padding-bottom: 50px;
 }
 
@@ -136,7 +136,7 @@
 
 .m-testimonials-right-section>img {
     position: absolute;
-    top: -10px;
+    top: -15px;
     left: -30px;
 }
 

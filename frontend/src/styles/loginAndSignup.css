@@ -2,13 +2,14 @@
     margin: 0;
     display: flex;
     align-items: center;
+    flex-direction: column;
     justify-content: center;
     min-height: 70vh;
+    padding: 25px;
 }
 
 .m-background form {
     width: 500px;
-    padding: 25px;
 }
 
 .m-background .m-secondary-heading {
@@ -33,8 +34,6 @@
     color: white !important;
     border-radius: 12px;
 }
-
-
 
 .m-authentication-fields:-webkit-autofill {
     -webkit-background-clip: text;

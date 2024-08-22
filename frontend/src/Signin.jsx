@@ -6,6 +6,7 @@ import { useNavigate, Link } from "react-router-dom";
 import InputFields from "./Components/InputFields.jsx";
 import { useLocation } from "react-router-dom";
 import config from "./config.js";
+import FlipLink from "./Components/FlipLink.jsx";
 
 const Signin = () => {
   const [passwordType, setPasswordType] = useState(() => "password");
@@ -160,14 +161,13 @@ const Signin = () => {
         >
           Forgot Password?
         </Link>
-        <button
-          type="submit"
-          onClick={(e) => handleClick(e)}
-          disabled={isBtnDisabled}
+        <FlipLink
           className="m-get-started-btn"
-        >
-          {btn}
-        </button>
+          buttonText={btn}
+          disabled={isBtnDisabled}
+          onClick={(e) => handleClick(e)}
+          type="submit"
+        />
         <p className="mb-0 mt-2 text-center">
           New to MeetzFlow?{" "}
           <Link

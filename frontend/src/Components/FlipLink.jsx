@@ -5,11 +5,22 @@ import right_arrow from "../assets/right-arrow.svg";
 const DURATION = 0.25;
 const STAGGER = 0.025;
 
-const FlipLink = ({ buttonText, className, href }) => {
+const FlipLink = ({
+  buttonText,
+  className,
+  href,
+  isLink = true,
+  disabled = false,
+  onClick,
+  type,
+}) => {
   return (
-    <Link to="/get-started">
+    <Link to={isLink ? "/get-started" : "#"}>
       <motion.button
         className={className}
+        disabled={disabled}
+        onClick={onClick}
+        type={type}
         initial="initial"
         whileHover="hovered"
         href={href}

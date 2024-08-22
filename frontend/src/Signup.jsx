@@ -6,6 +6,7 @@ import dataStorage from "./utilities/dataStorage";
 import InputFields from "./Components/InputFields.jsx";
 import { Link, useNavigate } from "react-router-dom";
 import config from "./config.js";
+import FlipLink from "./Components/FlipLink.jsx";
 
 const Signup = () => {
   const [passwordType, setPasswordType] = useState(() => "password");
@@ -164,14 +165,13 @@ const Signup = () => {
         <span className="success" style={{ textAlign: "center" }}>
           {successMessage}
         </span>
-        <button
-          type="submit"
-          onClick={(e) => handleClick(e)}
-          disabled={isBtnDisabled}
+        <FlipLink
           className="m-get-started-btn"
-        >
-          {btn}
-        </button>
+          buttonText={btn}
+          disabled={isBtnDisabled}
+          onClick={(e) => handleClick(e)}
+          type="submit"
+        />
         <p className="my-2 text-center">
           By signing up you agree to our{" "}
           <Link

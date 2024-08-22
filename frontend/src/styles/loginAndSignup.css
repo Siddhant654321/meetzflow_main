@@ -93,6 +93,14 @@ input::-webkit-inner-spin-button {
     width: 100%;
 }
 
+.m-reset-pass .m-get-started-btn {
+    margin-top: 0px !important;
+}
+
+.m-reset-pass .m-secondary-heading {
+    margin-bottom: 20px;
+}
+
 .m-background .m-get-started-btn {
     text-transform: uppercase;
     padding: 22px 0px;

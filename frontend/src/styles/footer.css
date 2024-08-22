@@ -1,5 +1,9 @@
 .m-footer-section {
     display: flex;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
     padding: 15px 65px;
     gap: 50px;
     justify-content: space-between;

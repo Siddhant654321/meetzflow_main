@@ -1,87 +1,109 @@
-form>h2{
-    margin-top: -10px;
-    font-size: 27px;
-    text-align: center;
-}
-
-form>button{
-    margin-top: 15px;
-    background-color: #6f42c1;
-    width: 100%;
-    color: white;
-    align-self: center;
-    white-space: nowrap;
-    border: 0px;
-    padding: 8px 12px !important;
-    transition: opacity 0.3s;
-    border-radius: 4px;
-}
-
-form>button:hover{
-    opacity: 0.9;
-}
-
-form>button:active{
-    opacity: 0.7;
-}
-
-form{
-    padding: 30px;
-    width: 90vw;
-    display: flex;
-    flex-direction: column;
-    max-width: 350px;
-    background-color: white;
-    align-self: center;
-    border-radius: 10px;
-}
-
-.background{
+.m-background {
     margin: 0;
-    background-color: rgb(27, 0, 27);
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
-    height: 100%;
+    min-height: 70vh;
 }
 
-.password-btn{
+.m-background form {
+    width: 500px;
+    padding: 25px;
+}
+
+.m-background .m-secondary-heading {
+    margin-bottom: 30px;
+}
+
+.m-background .m-authentication-fields {
+    margin-bottom: 8px;
+}
+
+.m-background .m-label {
+    color: white !important;
+}
+
+.m-background .m-label::after {
+    background-color: transparent !important;
+}
+
+.m-authentication-fields {
+    background-color: rgba(0, 0, 0, 0) !important;
+    border: 2px solid #FFF;
+    color: white !important;
+    border-radius: 12px;
+}
+
+
+
+.m-authentication-fields:-webkit-autofill {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: white !important;
+}
+
+.password-btn {
     z-index: 5;
     border: none;
     font-size: 19px;
+    color: white;
+    top: 45% !important;
+    padding-right: 15px;
 }
 
-.error, 
+.error,
 .success,
-.forgot-password{
+.forgot-password {
     display: block;
-    font-size:small;
+    font-size: small;
     margin: 4px 0px 0px 0px;
 }
 
-.error:empty, 
-.success:empty{
+.error:empty,
+.success:empty {
     display: none;
 }
 
-.error{
-    color:red; 
+.error {
+    color: red;
 }
 
-.success{
+.success {
     color: green;
     margin-bottom: -6px !important;
 }
 
-.forgot-password{
-    color: #6f42c1;
+.forgot-password {
+    font-size: 18px;
+    font-weight: 600;
     text-decoration: none;
+    text-transform: uppercase;
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.m-green-text {
+    color: #5CC981;
+    transition: opacity 0.5s;
+}
+
+.m-background .m-get-started-btn {
+    width: 100%;
+}
+
+.m-background .m-get-started-btn {
+    text-transform: uppercase;
+    padding: 12px 0px;
+    margin: 20px 0px 14px 0px;
+}
+
+.m-green-text:hover {
+    opacity: 0.8;
+}
+
+.m-green-text:active {
+    opacity: 0.7;
 }

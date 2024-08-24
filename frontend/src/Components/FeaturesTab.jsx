@@ -1,7 +1,6 @@
-import React, { useEffect, useRef, useCallback } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import "../styles/featuresTab.css";
 
-// Throttle function
 const throttle = (func, limit) => {
   let inThrottle;
   return function () {
@@ -20,46 +19,62 @@ const FeaturesTab = ({ icon, title, description, style }) => {
   const blobRef = useRef(null);
   const fakeBlobRef = useRef(null);
   const lastMousePositionRef = useRef({ clientX: 0, clientY: 0 });
+  const [isLaptop, setIsLaptop] = useState(window.innerWidth > 1024);
 
-  const handleMouseMove = useCallback((ev) => {
-    lastMousePositionRef.current = { clientX: ev.clientX, clientY: ev.clientY };
-    if (cardRef.current && blobRef.current && fakeBlobRef.current) {
-      const blob = blobRef.current;
-      const fakeBlob = fakeBlobRef.current;
-      const rec = fakeBlob.getBoundingClientRect();
+  const handleMouseMove = useCallback(
+    (ev) => {
+      if (!isLaptop) return;
 
-      blob.animate(
-        [
+      lastMousePositionRef.current = {
+        clientX: ev.clientX,
+        clientY: ev.clientY,
+      };
+      if (cardRef.current && blobRef.current && fakeBlobRef.current) {
+        const blob = blobRef.current;
+        const fakeBlob = fakeBlobRef.current;
+        const rec = fakeBlob.getBoundingClientRect();
+
+        blob.animate(
+          [
+            {
+              transform: `translate(${
+                ev.clientX - rec.left - rec.width / 2
+              }px,${ev.clientY - rec.top - rec.height / 2}px)`,
+            },
+          ],
           {
-            transform: `translate(${ev.clientX - rec.left - rec.width / 2}px,${
-              ev.clientY - rec.top - rec.height / 2
-            }px)`,
-          },
-        ],
-        {
-          duration: 300,
-          fill: "forwards",
-        }
-      );
+            duration: 300,
+            fill: "forwards",
+          }
+        );
 
-      blob.style.opacity = "1";
-    }
-  }, []);
+        blob.style.opacity = "1";
+      }
+    },
+    [isLaptop]
+  );
 
   const handleScroll = useCallback(() => {
+    if (!isLaptop) return;
     const ev = lastMousePositionRef.current;
     handleMouseMove(ev);
-  }, [handleMouseMove]);
+  }, [handleMouseMove, isLaptop]);
 
   useEffect(() => {
-    const throttledScroll = throttle(handleScroll, 100); // Adjust the 100ms as needed
+    const throttledScroll = throttle(handleScroll, 100);
+
+    const handleResize = () => {
+      setIsLaptop(window.innerWidth > 1024);
+    };
 
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("scroll", throttledScroll);
+    window.addEventListener("resize", handleResize);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("scroll", throttledScroll);
+      window.removeEventListener("resize", handleResize);
     };
   }, [handleMouseMove, handleScroll]);
 

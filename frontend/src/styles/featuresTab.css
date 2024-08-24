@@ -8,6 +8,7 @@
     overflow: hidden;
     border-radius: 24px;
     position: relative;
+    height: 100%;
 }
 
 .m-features-first-div {
@@ -60,4 +61,68 @@
 .m-feature-description {
     font-size: 18px;
     line-height: 34px;
+}
+
+@media (max-width: 1215px) and (min-width: 1029px) {
+    .m-features-container {
+        padding: 0px 10px;
+    }
+}
+
+@media (max-width: 1166px) and (min-width: 1029px) {
+    .m-feature-heading {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 1029px) and (min-width: 813px) {
+    .m-features-main-div {
+        width: 45% !important;
+    }
+
+    .m-features-main-div:last-of-type {
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 910px) {
+    .m-feature-heading {
+        font-size: 20px;
+    }
+
+    .m-features-first-div img {
+        height: 70px;
+        width: 70px;
+    }
+}
+
+@media (max-width: 813px) {
+    .m-features-main-div {
+        width: 100% !important;
+    }
+
+    .m-features-section .m-subheading {
+        margin-bottom: 0px !important;
+        padding: 0px 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .m-features-container {
+        padding: 0px 10px;
+    }
+
+    .m-features-section {
+        margin-top: 20px;
+    }
+
+    .m-features-section .m-subheading {
+        font-size: 16px;
+        line-height: 27px;
+    }
+
+    .m-feature-description {
+        font-size: 16px;
+        line-height: 28px;
+    }
 }

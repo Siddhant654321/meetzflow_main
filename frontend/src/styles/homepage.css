@@ -171,6 +171,10 @@
         font-size: 60px;
     }
 
+    .m-secondary-heading {
+        font-size: 46px;
+    }
+
     .m-subheading {
         font-size: 18px;
         margin: 7px 0px 25px 0px;
@@ -189,12 +193,16 @@
 
     .m-hero-section-img {
         min-width: 100%;
-        margin: 16px auto;
+        margin: 20px auto;
     }
 
     .m-hero-section h1 {
         font-size: 48px;
         margin-bottom: 4px;
+    }
+
+    .m-secondary-heading {
+        font-size: 40px;
     }
 }
 
@@ -202,10 +210,18 @@
     .m-hero-section h1 {
         font-size: 36px;
     }
+
+    .m-secondary-heading {
+        font-size: 32px;
+    }
 }
 
 @media (max-width: 460px) {
     .m-hero-section h1 {
         font-size: 28px;
+    }
+
+    .m-secondary-heading {
+        font-size: 24px;
     }
 }

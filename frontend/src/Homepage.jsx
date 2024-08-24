@@ -85,7 +85,7 @@ const Homepage = () => {
             buttonText="START FOR FREE"
           />
         </AnimationWrapper>
-        <AnimationWrapper delay={0.8}>
+        <AnimationWrapper delay={0.8} className="d-flex">
           <img src={hero_section_img} alt="" className="m-hero-section-img" />
         </AnimationWrapper>
       </div>

@@ -37,6 +37,7 @@ const FlipLink = ({
             position: "relative",
             whiteSpace: "pre",
           }}
+          className="m-fliplink-container"
         >
           <div>
             {buttonText.split("").map((l, i) => (
@@ -68,6 +69,7 @@ const FlipLink = ({
               position: "absolute",
               inset: 0,
             }}
+            className="m-button-transition-div"
           >
             {buttonText.split("").map((l, i) => (
               <motion.span

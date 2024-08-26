@@ -100,7 +100,7 @@ const TestimonialCarousel = ({ activeTestimonial, setActiveTestimonial }) => {
       },
     },
     {
-      name: "Hiroshi Yamamoto",
+      name: "Tsubasa Ito",
       designation: "PROFESSOR",
       img: hiroshi_yamamoto,
       order: 5,
@@ -127,8 +127,26 @@ const TestimonialCarousel = ({ activeTestimonial, setActiveTestimonial }) => {
     draggable: true,
     slidesToScroll: 1,
     slidesToShow: 3,
-    swipeToSlide: true,
     arrows: false,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          centerMode: true,
+          arrows: true,
+        },
+      },
+    ],
+    swipeToSlide: true,
     afterChange: function (index) {
       setActiveIndex(index);
     },
@@ -150,7 +168,6 @@ const TestimonialCarousel = ({ activeTestimonial, setActiveTestimonial }) => {
 
   return (
     <AnimationWrapper className="m-testimonial-div-1">
-      <div className="m-testimonials-overlay" />
       <Slider ref={sliderRef} {...settings}>
         {testimonials.map((testimonial, index) => (
           <TestimonialsTab

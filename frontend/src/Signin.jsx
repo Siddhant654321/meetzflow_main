@@ -161,13 +161,18 @@ const Signin = () => {
         >
           Forgot Password?
         </Link>
-        <FlipLink
-          className="m-get-started-btn"
-          buttonText={btn}
-          disabled={isBtnDisabled}
-          onClick={(e) => handleClick(e)}
-          type="submit"
-        />
+        {!isBtnDisabled ? (
+          <FlipLink
+            className="m-get-started-btn"
+            buttonText={btn}
+            onClick={(e) => handleClick(e)}
+            type="submit"
+          />
+        ) : (
+          <button className="m-get-started-btn not-fliplink" disabled={true}>
+            {btn}
+          </button>
+        )}
         <p className="mb-0 mt-2 text-center">
           New to MeetzFlow?{" "}
           <Link

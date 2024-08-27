@@ -85,13 +85,18 @@ const ResetPassword = () => {
         <span className="success" style={{ textAlign: "center" }}>
           {successMessage}
         </span>
-        <FlipLink
-          className="m-get-started-btn"
-          buttonText={btn}
-          disabled={isBtnDisabled}
-          onClick={(e) => handleClick(e)}
-          type="submit"
-        />
+        {!isBtnDisabled ? (
+          <FlipLink
+            className="m-get-started-btn"
+            buttonText={btn}
+            onClick={(e) => handleClick(e)}
+            type="submit"
+          />
+        ) : (
+          <button className="m-get-started-btn not-fliplink" disabled={true}>
+            {btn}
+          </button>
+        )}
         <p className="mb-0 mt-2 text-center">
           <strong>Note</strong>: Please only enter the email you have an account
           with.

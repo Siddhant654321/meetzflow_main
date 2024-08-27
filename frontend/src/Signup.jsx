@@ -165,13 +165,18 @@ const Signup = () => {
         <span className="success" style={{ textAlign: "center" }}>
           {successMessage}
         </span>
-        <FlipLink
-          className="m-get-started-btn"
-          buttonText={btn}
-          disabled={isBtnDisabled}
-          onClick={(e) => handleClick(e)}
-          type="submit"
-        />
+        {!isBtnDisabled ? (
+          <FlipLink
+            className="m-get-started-btn"
+            buttonText={btn}
+            onClick={(e) => handleClick(e)}
+            type="submit"
+          />
+        ) : (
+          <button className="m-get-started-btn not-fliplink" disabled={true}>
+            {btn}
+          </button>
+        )}
         <p className="my-2 text-center">
           By signing up you agree to our{" "}
           <Link

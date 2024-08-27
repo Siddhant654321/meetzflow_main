@@ -31,3 +31,36 @@
 .m-footer-right-div>a:hover {
     color: #5CC981;
 }
+
+@media (max-width: 920px) {
+    .m-footer-right-div a {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 820px) {
+    .m-footer-section img {
+        height: 50px;
+    }
+
+    .m-footer-section {
+        gap: 30px;
+        padding: 15px 40px;
+    }
+}
+
+@media (max-width: 650px) {
+    .m-footer-section {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+        padding: 15px 20px;
+    }
+
+}
+
+@media (max-width: 400px) {
+    .m-footer-right-div a {
+        font-size: 14px;
+    }
+}

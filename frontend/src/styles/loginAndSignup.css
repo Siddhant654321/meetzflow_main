@@ -12,6 +12,10 @@
     width: 500px;
 }
 
+.m-background form>p {
+    line-height: 28px;
+}
+
 .m-background .m-secondary-heading {
     margin-bottom: 30px;
 }
@@ -72,7 +76,7 @@
 }
 
 .forgot-password {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
     text-decoration: none;
     text-transform: uppercase;
@@ -103,7 +107,6 @@ input::-webkit-inner-spin-button {
 
 .m-background .m-get-started-btn {
     text-transform: uppercase;
-    padding: 22px 0px;
     margin: 20px 0px 14px 0px;
 }
 
@@ -113,4 +116,32 @@ input::-webkit-inner-spin-button {
 
 .m-green-text:active {
     opacity: 0.7;
+}
+
+@media (min-width: 1024px) {
+    .m-background .m-get-started-btn {
+        padding: 22px 0px;
+    }
+
+    .forgot-password {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 794px) {
+    .m-background .m-secondary-heading {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 650px) {
+    .m-background form {
+        width: 80%;
+    }
+}
+
+@media (max-width: 460px) {
+    .m-background form {
+        width: 95%;
+    }
 }

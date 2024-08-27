@@ -11,7 +11,7 @@ import quotes_icon from "./assets/quotes_icon.svg";
 import AnimationWrapper from "./Components/AnimationWrapper";
 import FlipLink from "./Components/FlipLink";
 import TestimonialCarousel from "./Components/TestimonialCarousel";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const Homepage = () => {
@@ -57,6 +57,8 @@ const Homepage = () => {
     },
   ];
 
+  const [viewport_amount, set_viewport_amount] = useState(0.5);
+
   const [activeTestimonial, setActiveTestimonial] = useState({
     favorite_feature: "",
     onboarded_since: "",
@@ -67,6 +69,22 @@ const Homepage = () => {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 980) {
+        set_viewport_amount(0.1);
+      } else {
+        set_viewport_amount(0.5);
+      }
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <div>
@@ -124,7 +142,7 @@ const Homepage = () => {
           activeTestimonial={activeTestimonial}
           setActiveTestimonial={setActiveTestimonial}
         />
-        <AnimationWrapper>
+        <AnimationWrapper viewport_amount={viewport_amount}>
           <div className="m-testimonials-upper-divider"></div>
           <div className="m-testimonials-bottom-card">
             <AnimatePresence mode="wait">
@@ -135,18 +153,20 @@ const Homepage = () => {
                 exit="hidden"
                 variants={fadeVariants}
                 transition={{ duration: 0.3 }}
-                style={{ width: "34%" }}
+                className="m-left-testimonial-container"
               >
-                <div className="m-testimonials-extra-details">
-                  <h4>ONBOARDED SINCE:</h4>
-                  <h5>{activeTestimonial.onboarded_since}</h5>
-                </div>
-                <div
-                  className="m-testimonials-extra-details"
-                  style={{ margin: 0 }}
-                >
-                  <h4>FAVORITE FEATURE:</h4>
-                  <h5>{activeTestimonial.favorite_feature}</h5>
+                <div>
+                  <div className="m-testimonials-extra-details">
+                    <h4>ONBOARDED SINCE:</h4>
+                    <h5>{activeTestimonial.onboarded_since}</h5>
+                  </div>
+                  <div
+                    className="m-testimonials-extra-details"
+                    style={{ margin: 0 }}
+                  >
+                    <h4>FAVORITE FEATURE:</h4>
+                    <h5>{activeTestimonial.favorite_feature}</h5>
+                  </div>
                 </div>
               </motion.div>
             </AnimatePresence>

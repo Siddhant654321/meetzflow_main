@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     gap: 24px;
+    margin: 0px 25px;
     padding: 23px 38px;
     border-radius: 26px;
     border: 2px solid rgba(183, 177, 177, 0.68);
@@ -13,12 +14,6 @@
 
 .slick-slide {
     min-width: 5% !important;
-}
-
-.slick-track {
-    display: flex !important;
-    gap: 50px;
-    justify-content: center;
 }
 
 .slick-list {
@@ -55,6 +50,8 @@
     pointer-events: none;
 }
 
+
+
 @media (max-width: 1330px) {
 
     .m-testimonial-name,
@@ -69,8 +66,8 @@
 }
 
 @media (max-width: 1084px) {
-    .slick-track {
-        gap: 25px;
+    .m-testimonials-tab {
+        margin: 0px 12px;
     }
 
     .m-testimonials-tab>img {
@@ -107,8 +104,8 @@
         z-index: 1;
     }
 
-    .slick-track {
-        gap: 15px;
+    .m-testimonials-tab {
+        margin: 0px 7px;
     }
 
     .m-testimonials-section .m-subheading {

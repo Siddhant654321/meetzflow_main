@@ -6,20 +6,20 @@
     height: 100vh;
 }
 
-.not-full-width{
+.not-full-width {
     width: calc(100vw - 68px);
 }
 
-.full-width{
+.full-width {
     width: 100vw;
     height: 85vh !important;
 }
 
-.my-spinner{
-    color: rgb(27,0,27);
+.my-spinner {
+    color: white;
 }
 
-.members-loading-spinner{
+.members-loading-spinner {
     width: 100%;
     text-align: center;
     margin: 25px 0px 15px 0px;

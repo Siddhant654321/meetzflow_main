@@ -24,11 +24,11 @@
     margin-bottom: 8px;
 }
 
-.m-background .m-label {
+.m-label {
     color: white !important;
 }
 
-.m-background .m-label::after {
+.m-label::after {
     background-color: transparent !important;
 }
 

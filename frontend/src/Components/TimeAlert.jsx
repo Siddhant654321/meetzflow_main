@@ -1,5 +1,5 @@
-import { Button, OverlayTrigger, Popover } from 'react-bootstrap';
-import '../styles/timeAlert.css'
+import { Button, OverlayTrigger, Popover } from "react-bootstrap";
+import "../styles/timeAlert.css";
 
 const popover = (
   <Popover id="popover-basic">
@@ -11,9 +11,11 @@ const popover = (
 );
 
 const TimeAlert = () => (
-  <div className='time-alert-div'>
+  <div className="time-alert-div">
     <OverlayTrigger trigger="hover" placement="left" overlay={popover}>
-        <Button className='time-alert-button'><i className="bi bi-info-circle"></i></Button>
+      <Button className="time-alert-button">
+        <i className="bi bi-info-circle text-white"></i>
+      </Button>
     </OverlayTrigger>
   </div>
 );

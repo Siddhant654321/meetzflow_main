@@ -1,4 +1,4 @@
-.main-container{
+.main-container {
     margin: 100px 10% 10% 10%;
     border: 1px solid black;
     border-radius: 10px;
@@ -12,10 +12,10 @@
     top: 125px;
 }
 
-.submit-btn{
+.submit-btn {
     margin-top: 15px;
-    background-color: #6f42c1;
-    color: white;
+    background-color: #5CC981;
+    color: black;
     border: 0px;
     padding: 8px 30px;
     transition: opacity 0.3s;
@@ -25,22 +25,22 @@
     border-radius: 4px;
 }
 
-.submit-btn:hover{
+.submit-btn:hover {
     opacity: 0.9;
 }
 
-.submit-btn:active{
+.submit-btn:active {
     opacity: 0.7;
 }
 
 
-.main-div{
+.main-div {
     display: flex;
     width: calc(100vw - 68px);
     align-items: center;
 }
 
-.img-container{
+.img-container {
     position: relative;
     display: flex;
     justify-content: center;
@@ -49,15 +49,15 @@
     width: fit-content !important;
 }
 
-.img-container > img{
+.img-container>img {
     display: inline-block;
     background-color: white;
     object-fit: cover;
     cursor: pointer;
 }
 
-.img-container > img,
-.edit-image{
+.img-container>img,
+.edit-image {
     height: 200px;
     width: 200px !important;
 }
@@ -85,25 +85,27 @@
 }
 
 @media (max-width: 768px) {
+
     .img-container,
-    .img-container > img,
-    .edit-image{
+    .img-container>img,
+    .edit-image {
         height: 126px !important;
         width: 126px !important;
     }
-    .img-container{
+
+    .img-container {
         bottom: 63px;
         margin-bottom: -63px;
     }
 }
 
 
-.main-container> div{
+.main-container>div {
     width: 100%;
     flex: 1;
 }
 
-.about-menu-icon{
+.about-menu-icon {
     border: none;
     background-color: transparent;
     position: absolute;
@@ -112,7 +114,7 @@
     font-size: 25px;
 }
 
-.about-menu-div{
+.about-menu-div {
     display: flex;
     justify-content: space-evenly;
 }

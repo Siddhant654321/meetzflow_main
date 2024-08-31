@@ -1,11 +1,11 @@
-.modal-profile-pics{
+.modal-profile-pics {
     width: 30px;
     border-radius: 50%;
     height: 30px;
     object-fit: cover;
 }
 
-.profile-in-chat{
+.profile-in-chat {
     display: flex;
     align-items: center;
     padding: 12px;
@@ -19,40 +19,40 @@
     flex: 1;
 }
 
-.modal-profile-data p{
+.modal-profile-data p {
     display: inline-block;
     margin: 0px 0px 0px 8px;
 }
 
 .remove-member-btn,
-.make-admin-btn{
+.make-admin-btn {
     border: none;
     color: white;
-    background-color: #6f42c1;
+    background-color: #5CC981;
     padding: 5px 6px;
     border-radius: 4px;
 }
 
-.make-admin-btn{
+.make-admin-btn {
     margin: 0px 10px;
 }
 
 .remove-member-btn:hover,
-.make-admin-btn:hover{
+.make-admin-btn:hover {
     background-color: #6e42c1d6;
 }
 
 .remove-member-btn:active,
-.make-admin-btn:active{
+.make-admin-btn:active {
     background-color: #6e42c1bb;
 }
 
-.online-user{
+.online-user {
     color: rgb(0, 145, 0);
     font-size: 24px;
 }
 
-.admin-text-style{
+.admin-text-style {
     color: white;
     padding: 3px 6px;
     font-size: 14px;

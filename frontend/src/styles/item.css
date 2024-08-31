@@ -1,11 +1,11 @@
-.item-div-main{
-    border: 1px solid black;
+.item-div-main {
+    border: 1px solid white;
     margin: 10px 20px;
     padding: 0px 20px;
     border-radius: 8px;
 }
 
-.minimum-heighted-div{
+.minimum-heighted-div {
     height: fit-content;
 }
 
@@ -23,19 +23,19 @@
     flex: 1;
 }
 
-.item-div-main p{
+.item-div-main p {
     margin: 0px;
 }
 
-.content{
+.content {
     padding: 14px 10px;
 }
 
 .view-more-btn,
 .view-btn button,
-.create-new-btn{
-    background-color: #6f42c1;
-    color: white;
+.create-new-btn {
+    background-color: #5CC981;
+    color: black;
     white-space: nowrap;
     border: 0px;
     padding: 8px 12px !important;
@@ -47,13 +47,13 @@
 
 .view-more-btn:hover,
 .view-btn button:hover,
-.create-new-btn:hover{
+.create-new-btn:hover {
     opacity: 0.9;
 }
 
 .view-more-btn:active,
 .view-btn button:active,
-.create-new-btn:active{
+.create-new-btn:active {
     opacity: 0.7;
 }
 
@@ -67,7 +67,7 @@
     text-align: center;
 } */
 
-.item-container{
+.item-container {
     padding: 10px;
     display: flex;
     align-items: center !important;
@@ -75,68 +75,74 @@
 
 .item-time,
 .item-name,
-.view-btn{
+.view-btn {
     display: inline-block;
     vertical-align: middle;
     height: fit-content;
 }
 
-.item-time{
+.item-time {
     padding: 0px 30px;
 }
 
-.item-name{
+.item-name {
     flex: 1;
 }
 
-.view-more-btn{
+.view-more-btn {
     margin: auto;
 }
 
-@media (max-width: 600px){
-    .item-container-mobile{
+@media (max-width: 600px) {
+    .item-container-mobile {
         flex-wrap: wrap !important;
         padding: 10px 0px;
     }
-    .item-bottom-border{
+
+    .item-bottom-border {
         border-bottom: 1px black solid !important;
     }
-    .break-line-flex{
+
+    .break-line-flex {
         flex-basis: 100%;
     }
-    .view-btn-mobile{
+
+    .view-btn-mobile {
         margin: 10px 20px;
         width: 100%;
     }
-    .view-btn-mobile>button{
+
+    .view-btn-mobile>button {
         width: 100%;
         text-align: center;
         margin: 0px;
     }
-    .item-name{
+
+    .item-name {
         width: 50%;
     }
-    .item-time{
+
+    .item-time {
         width: 50%;
     }
 }
 
-.scheduler-link-btn{
+.scheduler-link-btn {
     background-color: transparent;
     border-radius: 50%;
-    border: 1px solid #6f42c1;
-    color: #6f42c1;
+    border: 1px solid #5CC981;
+    color: #5CC981;
     transition: opacity 0.3s;
     font-size: 20px;
     padding: 3px 8px;
     margin-left: 15px;
 }
 
-.scheduler-link-btn:hover{
+.scheduler-link-btn:hover {
     color: white;
-    background-color: #6f42c1;
+    background-color: #5CC981;
 }
 
-.scheduler-link-btn:active{
+.scheduler-link-btn:active {
     opacity: 0.7;
 }

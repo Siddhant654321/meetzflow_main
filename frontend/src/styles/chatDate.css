@@ -1,6 +1,6 @@
-.chat-date-text{
+.chat-date-text {
     display: inline-block;
-    color: #3b3b3bc0;
+    color: rgba(255, 255, 255, 0.38);
     margin-bottom: 15px;
 }
 

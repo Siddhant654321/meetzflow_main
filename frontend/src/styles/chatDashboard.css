@@ -118,16 +118,17 @@
     font-size: 18px;
     border: 1px black solid;
     border-radius: 4px;
-    padding: 4px 7px;
-    color: rgb(66, 66, 66);
-    border-color: rgb(66, 66, 66);
+    padding: 8px 15px;
+    color: rgb(255, 255, 255);
+    border-color: rgb(255, 255, 255);
     width: fit-content;
     margin: 7px auto;
+    transition: all 0.5s;
 }
 
 #show-more-btn:hover {
-    color: rgb(37, 37, 37);
-    border-color: rgb(37, 37, 37);
+    color: rgb(189, 189, 189);
+    border-color: rgb(189, 189, 189);
     cursor: pointer;
 }
 

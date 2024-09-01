@@ -118,3 +118,10 @@
     display: flex;
     justify-content: space-evenly;
 }
+
+@media (max-width: 600px) {
+    .main-container {
+        width: 100%;
+        max-width: 100%;
+    }
+}

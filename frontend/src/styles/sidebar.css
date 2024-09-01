@@ -192,4 +192,6 @@ body {
   background: linear-gradient(117deg, #000 0%, #031801 50%, #000 100%);
   min-height: 100vh;
   color: white;
+  width: 100%;
+  overflow-x: hidden;
 }

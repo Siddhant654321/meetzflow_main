@@ -4,9 +4,10 @@
 }
 
 .modal-add-new-btn {
-    color: white;
+    color: black !important;
     background-color: #5CC981 !important;
     border: none;
+    transition: opacity 0.5s;
 }
 
 .modal-close-btn {
@@ -14,11 +15,11 @@
 }
 
 .modal-add-new-btn:hover {
-    background-color: #6e42c1d7 !important;
+    opacity: 0.8;
 }
 
 .modal-add-new-btn:active {
-    background-color: #6e42c1b2 !important;
+    opacity: 0.7;
 }
 
 
@@ -35,4 +36,10 @@
 
 .add-new-member-btn {
     width: fit-content !important;
+}
+
+.modal-content {
+    background-color: black;
+    color: white;
+    border: white 1px solid;
 }

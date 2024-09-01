@@ -1,6 +1,5 @@
 .item-div-main {
     border: 1px solid white;
-    margin: 10px 20px;
     padding: 0px 20px;
     border-radius: 8px;
 }
@@ -145,4 +144,19 @@
 
 .scheduler-link-btn:active {
     opacity: 0.7;
+}
+
+@media (max-width: 600px) {
+    .item-time {
+        padding: 0px 0px 0px 20px;
+        width: fit-content;
+    }
+
+    .item-div-main {
+        font-size: 14px;
+    }
+
+    .view-more-btn {
+        margin-top: 0px;
+    }
 }

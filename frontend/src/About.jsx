@@ -388,7 +388,12 @@ const About = () => {
           <button
             onClick={handleClick}
             disabled={isBtnDisabled}
-            className="submit-btn mb-3"
+            style={{
+              minWidth: "280px",
+              fontWeight: 600,
+              textTransform: "uppercase",
+            }}
+            className="submit-btn mb-3 mt-2"
             type="submit"
           >
             {btn}

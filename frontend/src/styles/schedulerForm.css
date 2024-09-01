@@ -1,23 +1,23 @@
-.scheduler-form-bg{
+.scheduler-form-bg {
     width: calc(100vw - 68px);
 }
 
-.scheduler-form{
+.scheduler-form {
     max-width: 100%;
     width: 70%;
     margin: auto;
 }
 
-.scheduler-form > h2{
+.scheduler-form>h2 {
     margin-bottom: 16px;
 }
 
-@media (max-width: 768px){
+@media (max-width: 768px) {
     .scheduler-form {
         width: 95%;
     }
 }
-  
+
 .selectgroup {
     display: -ms-inline-flexbox;
     display: inline-flex;
@@ -29,7 +29,7 @@
     position: relative;
 }
 
-.selectgroup-item + .selectgroup-item {
+.selectgroup-item+.selectgroup-item {
     margin-left: -1px;
 }
 
@@ -51,9 +51,9 @@
     left: 0;
 }
 
-.selectgroup-button, 
+.selectgroup-button,
 .not-selected-btn-style {
-    background-color: #fdfdff;
+    background-color: transparent;
     border-color: #e4e6fc;
     border-width: 1px;
     border-style: solid;
@@ -74,9 +74,10 @@
 }
 
 .selected-btn-style {
-    background-color: #6777ef;
-    color: #fff;
+    background-color: #5CC981;
+    color: black;
     z-index: 1;
+    border-color: #5CC981;
 }
 
 .selectgroup-pills {
@@ -96,4 +97,30 @@
 
 .selectgroup-pills .selectgroup-button {
     border-radius: 50px !important;
+}
+
+.m-edit-scheduler {
+    background-color: #5CC981;
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 10px 25px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: opacity 0.5s;
+}
+
+.m-edit-scheduler:hover {
+    opacity: 0.8;
+}
+
+.time-select {
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+}
+
+.m-options {
+    color: black;
 }

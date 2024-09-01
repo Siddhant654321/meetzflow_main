@@ -105,7 +105,7 @@ const ChatDashboard = () => {
       "23:30",
     ];
     const finalArr = arr.map((value) => (
-      <option value={value} key={value}>
+      <option value={value} key={value} className="m-options">
         {value}
       </option>
     ));
@@ -592,6 +592,7 @@ const ChatDashboard = () => {
         className="newCalendar mt-3 mb-4"
       />
       <InputFields
+        input_className="m-authentication-fields"
         key="meetingTitle"
         inputState={meetingData}
         name="meetingTitle"
@@ -604,7 +605,7 @@ const ChatDashboard = () => {
       />
       <label className="form-label">Meeting Time</label>
       <select
-        className="form-select custom-scroll-bar mb-2"
+        className="form-select custom-scroll-bar mb-2 time-select"
         value={meetingData.time}
         onChange={(e) =>
           setMeetingData((prev) => ({ ...prev, time: e.target.value }))
@@ -620,10 +621,9 @@ const ChatDashboard = () => {
         {meetingSuccess}
       </span>
       <button
-        style={{ width: "280px" }}
         disabled={isMeetingBtnDisabled}
         onClick={(e) => handleMeetingSchedule(e)}
-        className="mb-2"
+        className="mb-2 m-edit-scheduler"
       >
         {meetingBtn}
       </button>

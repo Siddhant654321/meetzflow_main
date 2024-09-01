@@ -67,7 +67,9 @@ const InputFields = ({
           <span className="error">{errorState ? errorState[error] : null}</span>
         </div>
         {additionalText && (
-          <span className="input-group-text">{additionalText}</span>
+          <span className="input-group-text bg-transparent text-white border-2">
+            {additionalText}
+          </span>
         )}
       </div>
     </div>

@@ -1,44 +1,46 @@
-.meeting-view-div{
+.meeting-view-div {
     width: calc(98vw - 68px);
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
-.meeting-data-div>h3{
+
+.meeting-data-div>h3 {
     margin-top: 20px;
     text-align: center;
 }
 
 
-.meeting-date-calendar>h3{
+.meeting-date-calendar>h3 {
     text-align: center;
 }
 
-.meeting-date-calendar>h3{
+.meeting-date-calendar>h3 {
     margin-top: 15px;
 }
 
-.meeting-data-div{
+.meeting-data-div {
     width: 400px;
     margin: auto;
     max-width: 100%;
 }
 
-.meeting-data-div>p{
+.meeting-data-div>p {
     line-height: 30px;
 }
 
-.normal-line-height{
+.normal-line-height {
     line-height: normal !important;
     display: inline-block;
 }
 
-.meeting-data-icon{
-    color: rgb(27, 0, 27);
+.meeting-data-icon {
+    color: #5CC981;
+    margin-right: 5px;
 }
 
 @media (max-width: 540px) {
-    .meeting-view-div{
+    .meeting-view-div {
         padding: 0px 15px;
     }
 }

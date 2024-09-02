@@ -1,5 +1,5 @@
 const verificationEmail = (code, email, name) => {
-    return (`
+  return `
     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
     <html data-editor-version="2" class="sg-campaigns" xmlns="http://www.w3.org/1999/xhtml">
         <head>
@@ -198,7 +198,7 @@ const verificationEmail = (code, email, name) => {
                   <tbody>
                     <tr>
                     <td align="center" bgcolor="#1B001B" class="inner-td" style="border-radius:6px; font-size:16px; text-align:center; background-color:inherit;">
-                      <a href="${process.env.FRONTEND_URL}/verify/${code}/${email}" style="background-color:#1B001B; border:1px solid #1b001b; border-color:#1b001b; border-radius:0px; border-width:1px; color:#ffffff; display:inline-block; font-size:14px; font-weight:normal; letter-spacing:0px; line-height:normal; padding:12px 40px 12px 40px; text-align:center; text-decoration:none; border-style:solid; font-family:inherit;" target="_blank">Verify Email Now</a>
+                      <a href="${process.env.FRONTEND_URL}/verify/${code}/${email}" style="background-color:#5CC981; border-radius:0px; border:none; color:black; display:inline-block; font-size:14px; font-weight:normal; letter-spacing:0px; line-height:normal; padding:12px 40px 12px 40px; text-align:center; text-decoration:none; font-weight: bold; text-transform: uppercase; font-family:inherit;" target="_blank">Verify Email Now</a>
                     </td>
                     </tr>
                   </tbody>
@@ -222,14 +222,14 @@ const verificationEmail = (code, email, name) => {
       </table><table class="module" role="module" data-type="text" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="a265ebb9-ab9c-43e8-9009-54d6151b1600" data-mc-module-version="2019-10-22">
         <tbody>
           <tr>
-            <td style="padding:50px 30px 50px 30px; line-height:22px; text-align:inherit; background-color:#1B001B;" height="100%" valign="top" bgcolor="#1B001B" role="module-content"><div><div style="font-family: inherit; text-align: center"><span style="color: #ffffff; font-size: 18px"><strong>Here’s what happens next:</strong></span></div>
+            <td style="padding:50px 30px 50px 30px; line-height:22px; text-align:inherit; background-color:black;" height="100%" valign="top" role="module-content"><div><div style="font-family: inherit; text-align: center"><span style="color: #ffffff; font-size: 18px"><strong>Here’s what happens next:</strong></span></div>
     <div style="font-family: inherit; text-align: center"><br></div>
     <div style="font-family: inherit; text-align: center"><span style="color: #ffffff; font-size: 18px">1. Create a new team and add your colleagues to plan your next big project together.</span></div>
     <div style="font-family: inherit; text-align: center"><br></div>
     <div style="font-family: inherit; text-align: center"><span style="color: #ffffff; font-size: 18px">2. Create a new calendar that you can send to potential prospects and schedule meetings with them.</span></div>
     <div style="font-family: inherit; text-align: center"><br></div>
     <div style="font-family: inherit; text-align: center"><span style="color: #ffffff; font-size: 18px">3. Assign meetings to your team members if your hands are already full.</span></div>
-    <div style="font-family: inherit; text-align: center"><span style="font-size: 18px; color: #ffbe00"><strong>+ much more!</strong></span></div>
+    <div style="font-family: inherit; text-align: center"><span style="font-size: 18px; color: #5CC981"><strong>+ much more!</strong></span></div>
     <div style="font-family: inherit; text-align: center"><br></div>
     <div style="font-family: inherit; text-align: center"><span style="color: #ffffff; font-size: 18px">Need support? Our support team is always</span></div>
     <div style="font-family: inherit; text-align: center"><span style="color: #ffffff; font-size: 18px">ready to help!</span></div><div></div></div></td>
@@ -238,12 +238,12 @@ const verificationEmail = (code, email, name) => {
       </table><table border="0" cellpadding="0" cellspacing="0" class="module" data-role="module-button" data-type="button" role="module" style="table-layout:fixed;" width="100%" data-muid="d050540f-4672-4f31-80d9-b395dc08abe1.1">
           <tbody>
             <tr>
-              <td align="center" bgcolor="#1B001B" class="outer-td" style="padding:0px 0px 0px 0px; background-color:#1B001B;">
+              <td align="center" class="outer-td" style="padding:0px 0px 0px 0px; background-color:black;">
                 <table border="0" cellpadding="0" cellspacing="0" class="wrapper-mobile" style="text-align:center;">
                   <tbody>
                     <tr>
-                    <td align="center" bgcolor="#ffbe00" class="inner-td" style="border-radius:6px; font-size:16px; text-align:center; background-color:inherit;">
-                      <a href="" style="background-color:#ffbe00; border:1px solid #ffbe00; border-color:#ffbe00; border-radius:0px; border-width:1px; color:#000000; display:inline-block; font-size:14px; font-weight:normal; letter-spacing:0px; line-height:normal; padding:12px 40px 12px 40px; text-align:center; text-decoration:none; border-style:solid; font-family:inherit;" target="_blank">Contact Support</a>
+                    <td align="center" bgcolor="#5CC981" class="inner-td" style="border-radius:6px; font-size:16px; text-align:center; background-color:inherit;">
+                      <a href="" style="background-color:#5CC981; border:1px solid #5CC981; border-color:#5CC981; border-radius:0px; border-width:1px; color:#000000; display:inline-block; font-size:14px; font-weight:normal; letter-spacing:0px; line-height:normal; padding:12px 40px 12px 40px; text-align:center; text-decoration:none; border-style:solid; font-family:inherit;" target="_blank">Contact Support</a>
                     </td>
                     </tr>
                   </tbody>
@@ -254,7 +254,7 @@ const verificationEmail = (code, email, name) => {
         </table><table class="module" role="module" data-type="spacer" border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed;" data-muid="c37cc5b7-79f4-4ac8-b825-9645974c984e">
         <tbody>
           <tr>
-            <td style="padding:0px 0px 30px 0px;" role="module-content" bgcolor="#1B001B">
+            <td style="padding:0px 0px 30px 0px;" role="module-content" bgcolor="black">
             </td>
           </tr>
         </tbody>
@@ -300,7 +300,7 @@ const verificationEmail = (code, email, name) => {
           </center>
         </body>
       </html>
-    `)
-}
+    `;
+};
 
-export default verificationEmail
+export default verificationEmail;

@@ -1,9 +1,13 @@
-.signInGoogleText{
+.signInGoogleText {
     display: inline-block;
     font-size: 20px;
+    margin: 20px;
 }
 
-.signInGoogleDiv{
+.signInGoogleDiv {
+    min-height: 100vh;
+    background: linear-gradient(117deg, #000 0%, #031801 50%, #000 100%);
+    color: white;
     width: 100vw;
     text-align: center;
     padding: 7vh 15px 0px 15px;

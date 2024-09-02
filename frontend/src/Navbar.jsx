@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -9,6 +9,7 @@ import FlipLink from "./Components/FlipLink";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(() => false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -21,6 +22,12 @@ const Navbar = () => {
     closed: { opacity: 0, y: 20 },
     open: { opacity: 1, y: 0 },
   };
+
+  useLayoutEffect(() => {
+    if (localStorage.getItem("loggedIn")) {
+      setIsLoggedIn(true);
+    }
+  }, []);
 
   return (
     <main className="m-container">
@@ -48,7 +55,8 @@ const Navbar = () => {
         </ul>
         <FlipLink
           className="m-get-started-btn desktop-menu"
-          buttonText="START FOR FREE"
+          buttonText={isLoggedIn ? "DASHBOARD" : "START FOR FREE"}
+          link={isLoggedIn ? "/app" : "/get-started"}
         />
         <div className="hamburger" onClick={toggleMenu}>
           <motion.div
@@ -108,8 +116,9 @@ const Navbar = () => {
               <motion.li variants={linkVariants} transition={{ delay: 0.5 }}>
                 <FlipLink
                   className="m-get-started-btn"
-                  buttonText="START FOR FREE"
+                  buttonText={isLoggedIn ? "DASHBOARD" : "START FOR FREE"}
                   onClick={toggleMenu}
+                  link={isLoggedIn ? "/app" : "/get-started"}
                 />
               </motion.li>
             </ul>

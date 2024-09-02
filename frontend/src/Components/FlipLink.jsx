@@ -13,9 +13,10 @@ const FlipLink = ({
   disabled = false,
   onClick,
   type,
+  link,
 }) => {
   return (
-    <Link to={isLink ? "/get-started" : "#"}>
+    <Link to={link ? link : isLink ? "/get-started" : "#"}>
       <motion.button
         className={className}
         disabled={disabled}

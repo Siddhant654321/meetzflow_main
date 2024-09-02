@@ -11,7 +11,7 @@ import quotes_icon from "./assets/quotes_icon.svg";
 import AnimationWrapper from "./Components/AnimationWrapper";
 import FlipLink from "./Components/FlipLink";
 import TestimonialCarousel from "./Components/TestimonialCarousel";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useLayoutEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const Homepage = () => {
@@ -56,6 +56,7 @@ const Homepage = () => {
       delay: 0.2,
     },
   ];
+  const [isLoggedIn, setIsLoggedIn] = useState(() => false);
 
   const [viewport_amount, set_viewport_amount] = useState(0.5);
 
@@ -86,6 +87,12 @@ const Homepage = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  useLayoutEffect(() => {
+    if (localStorage.getItem("loggedIn")) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
   return (
     <div>
       <div className="m-hero-section">
@@ -100,7 +107,8 @@ const Homepage = () => {
         <AnimationWrapper delay={0.4}>
           <FlipLink
             className="m-get-started-btn m-with-icon-btn"
-            buttonText="START FOR FREE"
+            buttonText={isLoggedIn ? "DASHBOARD" : "START FOR FREE"}
+            link={isLoggedIn ? "/app" : "/get-started"}
           />
         </AnimationWrapper>
         <AnimationWrapper delay={0.8} className="d-flex">
@@ -208,7 +216,8 @@ const Homepage = () => {
         </h3>
         <FlipLink
           className="m-get-started-btn m-with-icon-btn"
-          buttonText="START FOR FREE"
+          buttonText={isLoggedIn ? "DASHBOARD" : "START FOR FREE"}
+          link={isLoggedIn ? "/app" : "/get-started"}
         />
       </AnimationWrapper>
     </div>

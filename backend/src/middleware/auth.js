@@ -18,26 +18,23 @@ const auth = async (req, res, next) => {
     const { tokens } = user_data;
     let success = "failure";
     const { status } = user_data;
-    if (status !== "active") {
-      return res
-        .status(400)
-        .send({
-          emailError:
-            "Your email is not verified. Please verify it before performing any action",
-        });
+    if (req.path !== "/account/endpoint/logout" && status !== "active") {
+      return res.status(400).send({
+        emailError:
+          "Your email is not verified. Please verify it before performing any action",
+      });
     }
     if (
+      req.path !== "/account/endpoint/logout" &&
       req.path !== "/auth/google" &&
       req.path !== "/api/setup/callback" &&
       req.path !== "/api/user/is-google-auth"
     ) {
       if (!user_data.googleAuthorizationCode) {
-        return res
-          .status(400)
-          .send({
-            googleAuthenticationError:
-              "You have not connected google with our app yet. Please do it before performing any action",
-          });
+        return res.status(400).send({
+          googleAuthenticationError:
+            "You have not connected google with our app yet. Please do it before performing any action",
+        });
       }
     }
     tokens.forEach((value) => {

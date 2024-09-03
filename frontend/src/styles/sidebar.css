@@ -65,6 +65,7 @@
   padding: 1rem 1rem 0 0;
   width: var(--nav-width);
   height: 100vh;
+  max-height: 100vh;
   background-color: var(--first-color);
   border-right: 1px solid white;
   transition: .5s;
@@ -116,12 +117,11 @@
 }
 
 .toggle-btn:hover {
-  color: #9788b3;
-  border-color: #9788b3;
+  opacity: 0.8;
 }
 
 .nav_link:hover {
-  color: #9788b3;
+  opacity: 0.8;
 }
 
 .nav_icon {

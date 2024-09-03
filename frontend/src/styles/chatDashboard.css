@@ -54,6 +54,7 @@
     width: 70% !important;
     margin: auto;
     margin-top: 13px !important;
+    padding: 0px 10px;
 }
 
 .chat-message-form input {
@@ -160,5 +161,9 @@
 
     .chat-menu-icon {
         top: 8px !important;
+    }
+
+    .chat-send-button {
+        margin: 0px !important;
     }
 }

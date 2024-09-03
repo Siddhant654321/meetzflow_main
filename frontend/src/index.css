@@ -62,6 +62,10 @@ body {
   padding: 17px 26px;
 }
 
+.m-fliplink-btn-normaltext {
+  display: none;
+}
+
 
 @media (max-width: 1024px) {
   .m-get-started-btn {
@@ -86,8 +90,13 @@ body {
     overflow: visible !important;
   }
 
-  .m-button-transition-div {
+  .m-button-transition-div,
+  .m-fliplink-btn-fliptext {
     display: none;
+  }
+
+  .m-fliplink-btn-normaltext {
+    display: block;
   }
 
   .m-fliplink-container {

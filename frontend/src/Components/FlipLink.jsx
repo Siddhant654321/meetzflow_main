@@ -40,7 +40,7 @@ const FlipLink = ({
           }}
           className="m-fliplink-container"
         >
-          <div>
+          <div className="m-fliplink-btn-fliptext">
             {buttonText.split("").map((l, i) => (
               <motion.span
                 variants={{
@@ -65,6 +65,7 @@ const FlipLink = ({
               </motion.span>
             ))}
           </div>
+          <div className="m-fliplink-btn-normaltext">{buttonText}</div>
           <div
             style={{
               position: "absolute",

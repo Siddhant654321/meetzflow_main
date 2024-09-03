@@ -195,3 +195,9 @@ body {
   width: 100%;
   overflow-x: hidden;
 }
+
+@media (max-height: 595px) {
+  .l-navbar .nav_link {
+    margin-bottom: 12px;
+  }
+}

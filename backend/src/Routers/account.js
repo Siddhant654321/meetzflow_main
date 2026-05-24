@@ -3,7 +3,7 @@ import accountModel from '../Models/accountModel.js';
 import getToken from '../token.js';
 import mongoose from '../../mongoose.js';
 import bcrypt from 'bcrypt';
-import sgMail from '@sendgrid/mail';
+import { sendEmail } from '../mailer.js';
 import verificationEmail from '../EmailTemplate/verificationEmail.js';
 import forgotPassword from '../EmailTemplate/forgotPassword.js';
 import saveNotifications from '../saveNotifications.js';
@@ -31,15 +31,12 @@ Router.post('/account/endpoint/newSignUp', async (req, res) => {
         const verificationCode = await bcrypt.hash(code, 8);
         const password = await bcrypt.hash(req.body.password, 8)
         const user = await accountModel({_id, ...req.body, password, tokens: [{token}], verificationCode, verificationCodeExpires: Date.now() + 24*60*60*1000 }).save();
-        sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-        const msg = {
+        await sendEmail({
             to: user.email,
-            from: 'admin@meetzflow.com',
             subject: 'Verify Your Email - MeetzFlow',
             text: `Please verify your email address to get access to features like team collaboration and meeting scheduling - ${process.env.FRONTEND_URL}/verify/${code}/${user.email}`,
             html: verificationEmail(code, user.email, user.name)
-        };
-        sgMail.send(msg);
+        });
         const expirationDate = new Date();
         expirationDate.setDate(expirationDate.getDate() + 30);
         res.cookie('token', token, {
@@ -108,15 +105,12 @@ Router.post('/endpoint/account/newVerificationCode', async (req,res) => {
         user.verificationCode = verificationCode;
         user.status = 'pending'
         user.verificationCodeExpires = Date.now() + 24*60*60*1000
-        sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-        const msg = {
+        await sendEmail({
             to: user.email,
-            from: 'admin@meetzflow.com',
             subject: 'Verify Your Email - MeetzFlow',
             text: `Please verify your email address to get access to features like team collaboration and meeting scheduling - ${process.env.FRONTEND_URL}/verify/${code}/${user.email}`,
             html: verificationEmail(code, user.email, user.name)
-        };
-        sgMail.send(msg);
+        });
         await accountModel(user).save();
         res.status(201).send({success: 'Email Sent Successfully'})
     } catch (error) {
@@ -134,15 +128,12 @@ Router.post('/endpoint/account/forgot-password', async (req,res) => {
         const forgotPasswordCode = await bcrypt.hash(code, 8);
         user.forgotPasswordCode = forgotPasswordCode;
         user.forgotPasswordCodeExpires = Date.now() + 24*60*60*1000
-        sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-        const msg = {
+        await sendEmail({
             to: user.email,
-            from: 'admin@meetzflow.com',
             subject: 'Change Your Password - MeetzFlow',
             text: `Please follow this link to set a new password - ${process.env.FRONTEND_URL}/change-password/${code}/${user.email}`,
             html: forgotPassword(code, user.email)
-        };
-        sgMail.send(msg);
+        });
         await accountModel(user).save();
         res.status(201).send({success: 'Email Sent Successfully'})
     } catch (error) {

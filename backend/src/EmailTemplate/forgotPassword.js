@@ -197,7 +197,7 @@ const forgotPassword = (code, email) => {
                   <tbody>
                     <tr>
                     <td align="center" bgcolor="#1B001B" class="inner-td" style="border-radius:6px; font-size:16px; text-align:center; background-color:inherit;">
-                      <a href="${process.env.FRONTEND_URL}/change-password/${code}/${user.email}" style="background-color:#5CC981; border:none; border-radius:0px; color: black; display:inline-block; font-size:14px; font-weight:600; text-transform: uppercase; letter-spacing:0px; line-height:normal; padding:12px 40px 12px 40px; text-align:center; text-decoration:none; font-family:inherit;" target="_blank">Change Password</a>
+                      <a href="${process.env.FRONTEND_URL}/change-password/${code}/${email}" style="background-color:#5CC981; border:none; border-radius:0px; color: black; display:inline-block; font-size:14px; font-weight:600; text-transform: uppercase; letter-spacing:0px; line-height:normal; padding:12px 40px 12px 40px; text-align:center; text-decoration:none; font-family:inherit;" target="_blank">Change Password</a>
                     </td>
                     </tr>
                   </tbody>
